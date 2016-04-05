@@ -15,8 +15,9 @@ Acesta este repo-ul grupei 2B5. :fireworks: :rocket: :stars:
 + Questions - Edge cases:
   + git clone copiaza toate remotes - [link](#chestii-discutabile1)
 
-##Calendar
 <a name="calendar-anchor"></a>
+
+##Calendar
 
 :thought_balloon:  __Saptamana 7__ - [descriere laborator](http://profs.info.uaic.ro/~adiftene/Scoala/2016/IP/Laboratoare/Lab07.pdf)
 ... `deadline: 06.04.2016, ora 10 (S8)`
@@ -29,8 +30,11 @@ Acesta este repo-ul grupei 2B5. :fireworks: :rocket: :stars:
 + [ ] diagrame UML
 + [ ] coordonare ...
 
-##Metodologie de lucru
+
 <a name="metodologie-lucru-anchor"></a>
+
+##Metodologie de lucru
+
 Fiecare din cele 3 echipe isi va face un fork al acestui repo din interfata Github.
 
 **Numele de pull-requesturi sau commituri trebuie sa respecte niste norme !** (verificati commituri/pull requests anterioare pe repo-ul principal)
@@ -82,8 +86,10 @@ O data ce ati terminat ce ati avut de facut, faceti un pull request catre repo-u
 + in curand ... `git reset HEAD~1` **(*adauga explicatii aici*)**
 
 
-###De ce am ales acest workflow ?
 <a name="explicatii-workflow-anchor"></a>
+
+##De ce am ales acest workflow ?
+
 + Lucratul pe branchuri ar fi dus la confuzii mai multe, si la conflicte la push. De asemenea, ar fi aparut probleme, de vreme ce master nu are un control suficient de granular pentru protectia branchului.
 + Fiecare echipa are un repo personal care poate fi sincronizat cu cel principal oricand prin remotes (pull/push) sau poate avea un istoric de mai multe commituri inainte sa faca push pe cel principal (din motive de control al istoricului - git squash - sau ...)
 
