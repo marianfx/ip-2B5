@@ -1,1 +1,2 @@
-# ip-2B5
+1. Intro
+This is the repo for the image interpretation module. Having <code>fun</code> here.
