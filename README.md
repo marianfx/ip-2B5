@@ -58,7 +58,7 @@ Fiecare din cele 3 echipe isi va face un fork al acestui repo din interfata Gith
 
 + `git fetch` //preia schimbarile din upstream
 + `git rebase upstream/master` //adauga schimbarile din upstream si pozitioneaza modificarile actuale peste cele din upstream; un exemplu:
-``` 
+```
   Before rebase
   > ... o ---- o ---- A ---- B  origin/master (upstream)
   >                    \      
@@ -84,7 +84,7 @@ O data ce ati terminat ce ati avut de facut, faceti un pull request catre repo-u
 -- in caz in care aveti modificari la care inca nu s-a dat commit, si nu se poate face rebase:
 + `git stash` - salveaza schimbarile actuale fata de HEAD intr-o locatie separata
 + `git rebase origin/master` //descris mai inainte
-+ `git stash apply` - restaureaza 
++ `git stash apply` - restaureaza
 + apoi git add, commit, push, cam mai inainte
 
 ####Comenzi extra:
@@ -92,7 +92,7 @@ O data ce ati terminat ce ati avut de facut, faceti un pull request catre repo-u
 + `git diff` \\verifica modificarile fata de ultimul commit - acelasi mod de lucru ...
 + `git reset` \\in forma asta, git reset face un 'undo' la git add, daca nu ati facut commit-ul inca, si ati mai adaugat ceva dupa git add
 + extra la extra:
-  + `git rebase HEAD~<nr>` \\intoarce istoricul din repo cu **nr** pasi inapoi | **nu folositi aceasta comanda decat daca ati folosit in prealabil comanda pe un repo de test !** (pentru ca `git rebase --continue` si `git rebase --abort`) 
+  + `git rebase HEAD~<nr>` \\intoarce istoricul din repo cu **nr** pasi inapoi | **nu folositi aceasta comanda decat daca ati folosit in prealabil comanda pe un repo de test !** (pentru ca `git rebase --continue` si `git rebase --abort`)
 
 
 <a name="explicatii-workflow-anchor"></a>
@@ -101,7 +101,3 @@ O data ce ati terminat ce ati avut de facut, faceti un pull request catre repo-u
 
 + Lucratul pe branchuri ar fi dus la confuzii mai multe, si la conflicte la push. De asemenea, ar fi aparut probleme, de vreme ce master nu are un control suficient de granular pentru protectia branchului.
 + Fiecare echipa are un repo personal care poate fi sincronizat cu cel principal oricand prin remotes (pull/push) sau poate avea un istoric de mai multe commituri inainte sa faca push pe cel principal (din motive de control al istoricului - git squash - sau ...)
-
-
-
-
