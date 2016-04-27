@@ -1,7 +1,7 @@
 package com.imgprocessor.api;
 
+import com.imgprocessor.controller.App;
 import com.imgprocessor.model.Representation;
-import com.imgprocessor.view.Application;
 
 /**
  * 
@@ -11,7 +11,7 @@ public class PublicApiService {
     /**
      * Default constructor
      */
-    public PublicApiService(Application appRefference) {
+    public PublicApiService(App appRefference) {
     	
     }
 

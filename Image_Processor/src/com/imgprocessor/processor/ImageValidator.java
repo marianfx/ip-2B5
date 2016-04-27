@@ -1,11 +1,15 @@
 package com.imgprocessor.processor;
 
-import javax.swing.ImageIcon;
 
 /**
  * 
  */
 public class ImageValidator {
+	
+	private final int MIN_WIDTH = 500;
+	private final int MIN_HEIGHT = 500;
+
+    protected ExtendedImage internalImage;
 
     /**
      * Default constructor
@@ -18,8 +22,9 @@ public class ImageValidator {
     /**
      * @param image
      */
-    public ImageValidator(ImageIcon image) {
-        // TODO implement here
+    public ImageValidator(ExtendedImage internalImage) {
+        
+    	this.internalImage = internalImage;
     }
 
     /**
@@ -27,19 +32,14 @@ public class ImageValidator {
      */
     public String allowedExtensions;
 
-    /**
-     * 
-     */
-    protected ImageIcon internalImage;
-
-
 
     /**
      * @return
      */
     public boolean validate() {
-        // TODO implement here
-        return false;
+        
+    	return internalImage.getWidth() >= this.MIN_WIDTH &&
+    		   internalImage.getHeight() >= this.MIN_HEIGHT;
     }
 
 }
