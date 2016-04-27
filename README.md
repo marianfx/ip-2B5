@@ -1,6 +1,21 @@
 # ip-2B5
 [![slack shield mock](https://img.shields.io/badge/slack-available-ff69b4.svg?style=flat)](https://ip-b5.slack.com/messages/)
 
+
+# dolarei
+
+The flow for the API
+- One user / module acceses the API only through the PublicApiInterface
+- There are 2 public procedures - processRequest, with a filePath that is not mandatory, and getResult, which returns the representation
+- The public (external) user will access the processRequest with a given filePath and the other module (internal) will access the processRequest without a filePath (because it's internal, so he wants an already processed image from memory).
+- Before doing anything, the service validates the request, using the Request validator, having two things to check
+      - if the call is external, check the filepath id it exists and actually points to an image
+      - if the call is internal, check if there is in the application's memory an processed image (that's why there's required the refference to the main application class, which holds an instance of the ImageProcessor class which holds an internal processed image  - if there is one)
+  - If the request is not valid, return an error to the caller
+  - If the request is valid, decide which Api to use - Internal or external, based on wether the filePath exists or not
+  - at the end, after the processing, send the result
+  - everything calls this api, internal or external being
+
 Acesta este repo-ul grupei 2B5. :fireworks: :rocket: :stars:
 
 **Descriere proiect**
