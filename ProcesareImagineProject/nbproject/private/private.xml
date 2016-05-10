@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/tifuivali/NetBeansProjects/OpenCvTest/src/ImageProcesingPackage/ImageProcesorImpl.java</file>
-            <file>file:/home/tifuivali/NetBeansProjects/OpenCvTest/src/UserInterfacePackage/ImageProcesorApp.java</file>
-            <file>file:/home/tifuivali/NetBeansProjects/OpenCvTest/src/ExtendedImagePackage/ExtendedImage.java</file>
-            <file>file:/home/tifuivali/NetBeansProjects/OpenCvTest/src/ImagePreProcesingPackage/ImagePreProcesorImpl.java</file>
-            <file>file:/home/tifuivali/NetBeansProjects/OpenCvTest/src/ImagePreProcesingPackage/ImageValidator.java</file>
-            <file>file:/home/tifuivali/NetBeansProjects/OpenCvTest/src/UserInterfacePackage/MainView.fxml</file>
-            <file>file:/home/tifuivali/NetBeansProjects/OpenCvTest/src/UserInterfacePackage/MainViewController.java</file>
+            <file>file:/home/tifuivali/NetBeansProjects/ProcesareImagineProject/src/Api/RequestValidator.java</file>
+            <file>file:/home/tifuivali/NetBeansProjects/ProcesareImagineProject/src/Api/PublicApiService.java</file>
+            <file>file:/home/tifuivali/NetBeansProjects/ProcesareImagineProject/src/Api/NotSuportedFileFormatException.java</file>
+            <file>file:/home/tifuivali/NetBeansProjects/ProcesareImagineProject/src/Api/InproperParameterCallingRequestException.java</file>
         </group>
     </open-files>
 </project-private>
