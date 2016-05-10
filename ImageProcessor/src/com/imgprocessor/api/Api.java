@@ -11,18 +11,18 @@ import com.imgprocessor.model.ImageProcessedRepresentation;
 import com.imgprocessor.processor.TruncatingException;
 import com.imgprocessor.processor.ValidatingException;
 import com.imgprocessor.processor.ProcessingException;
-import java.io.File;
-import java.io.FileNotFoundException;
+
+
 
 /**
  *
  * @author tifuivali
  */
-public interface ImageProcessorApi {
+public interface Api {
     
 
-    ImageProcessedRepresentation getImageProcessedRepresentation(File imageFile) throws ValidatingException,
-                                                               TruncatingException,ProcessingException,FileNotFoundException;
+    ImageProcessedRepresentation getImageProcessedRepresentation() throws ValidatingException,
+                                                               TruncatingException,ProcessingException;
     void addProgressChangedListener(ProgressChangedListener listener);
     void removeProgressChangedListener(ProgressChangedListener listener);
     void addDetailsApprendListener(DetailsApprendListener listener);

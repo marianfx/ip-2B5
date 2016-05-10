@@ -146,5 +146,10 @@ public class ImageProcessorImpl implements ImageProcessor{
        this.detailsAprendListeners.remove(listener);
        this.getImagePreprocesor().removeDetailsApprendListener(listener);
     }
+
+    @Override
+    public ExtendedImage getExtendedImage() {
+        return imagePreprocesor.getPreProcesedExtendedImage();
+    }
     
 }

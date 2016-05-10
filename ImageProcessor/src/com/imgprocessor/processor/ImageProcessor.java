@@ -21,4 +21,5 @@ public interface ImageProcessor {
    void addDetailsApprendListener(DetailsApprendListener listener);
    void removeDetailsApprendListener(DetailsApprendListener listener);
    ImageProcessedRepresentation getImageProcessedRepresentation() throws ValidatingException, TruncatingException, ProcessingException;
+    public ExtendedImage getExtendedImage();
 }
