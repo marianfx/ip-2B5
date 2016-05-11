@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Api;
+package com.imgprocessor.controller;
 
 /**
  *
  * @author tifuivali
  */
-public class InternalProcesorNotFund  extends Exception{
+public interface DetailsAppendListener {
     
-    public InternalProcesorNotFund()
-    {
-        super("Internal processor not found or intern image is unitialized!");
-    }
+    void onAppendPerformed(DetailsAppendAction e);
 }

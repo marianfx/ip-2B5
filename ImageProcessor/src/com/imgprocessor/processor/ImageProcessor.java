@@ -5,7 +5,7 @@
  */
 package com.imgprocessor.processor;
 
-import com.imgprocessor.controller.DetailsApprendListener;
+import com.imgprocessor.controller.DetailsAppendListener;
 import com.imgprocessor.controller.ProgressChangedListener;
 import com.imgprocessor.model.ImageProcessedRepresentation;
 
@@ -15,11 +15,17 @@ import com.imgprocessor.model.ImageProcessedRepresentation;
  */
 public interface ImageProcessor {
     
-   void processing() throws ValidatingException,TruncatingException,ProcessingException;
+   void process() throws ValidatingException, TruncatingException, ProcessingException;
+   
+   ImageProcessedRepresentation getImageProcessedRepresentation() 
+		   throws ValidatingException, TruncatingException, ProcessingException;
+   
+   public ExtendedImage getExtendedImage();
+   
+   /*progress bar and details text area listeners*/
    void addProgressChangedListener(ProgressChangedListener listener);
    void removeProgressChangedListener(ProgressChangedListener listener);
-   void addDetailsApprendListener(DetailsApprendListener listener);
-   void removeDetailsApprendListener(DetailsApprendListener listener);
-   ImageProcessedRepresentation getImageProcessedRepresentation() throws ValidatingException, TruncatingException, ProcessingException;
-    public ExtendedImage getExtendedImage();
+   void addDetailsAppendListener(DetailsAppendListener listener);
+   void removeDetailsAppendListener(DetailsAppendListener listener);
+   
 }

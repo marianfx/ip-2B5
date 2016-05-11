@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  *
  * @author tifuivali
  */
-public class ImageProcesorApp extends Application {
+public class ImageProcessorApp extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {

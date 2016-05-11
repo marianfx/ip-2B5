@@ -14,7 +14,7 @@ public enum ImageState {
     Loaded,
     Validated,
     Truncated,
-    Preprocesed,
+    Preprocessed,
     Processing,
     Processed
     

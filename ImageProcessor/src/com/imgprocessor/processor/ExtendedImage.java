@@ -18,26 +18,25 @@ import org.opencv.core.Mat;
  * Obeictul imagine extins ce va fi preprocesat si apoi procesat.
  * contine imagine si matricea imagine
  */
-public class ExtendedImage  {
+public class ExtendedImage {
     
-    
-    private Image image=null;
-    private Mat matRepresentation=null;
+    private Image image = null;
+    private Mat matRepresentation = null;
     private int width;
     private int height;
-    private ImageState imageState=null;
+    private ImageState imageState = null;
     
     /**
      * Create a new Extended Image using a File Image.
      * @param fileImage 
      * @throws java.io.FileNotFoundException 
      */
-    public ExtendedImage(File fileImage) throws FileNotFoundException
-    {
+    public ExtendedImage(File fileImage) throws FileNotFoundException {
+    	
       // this.matRepresentation=Highgui.imread(fileImage.getAbsolutePath());
-       this.image=new Image(new FileInputStream(fileImage));
-       this.width=(int)image.getWidth();
-       this.height=(int)image.getHeight();
+       this.image = new Image(new FileInputStream(fileImage));
+       this.width = (int)image.getWidth();
+       this.height = (int)image.getHeight();
        this.imageState=ImageState.Loaded;
     }
 

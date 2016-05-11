@@ -5,78 +5,86 @@
  */
 package com.imgprocessor.processor;
 
-import com.imgprocessor.controller.DetailsApprendAction;
-import com.imgprocessor.controller.DetailsApprendListener;
+import com.imgprocessor.controller.DetailsAppendAction;
+import com.imgprocessor.controller.DetailsAppendListener;
 import com.imgprocessor.controller.ProgressChangedAction;
 import com.imgprocessor.controller.ProgressChangedListener;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Vector;
-import javafx.scene.control.ProgressBar;
 
 /**
  *
  * @author tifuivali
  */
-public class ImagePreProcessorImpl implements ImagePreprocessor{
+public class ImagePreProcessorImpl implements ImagePreProcessor {
 
-    private ExtendedImage extendedImage=null;
+    private ExtendedImage extendedImage;
     
-    //utilizat pentru scrierea de detalii ...
-    //scrierile de detalii se vor face prin procedura apprendDetail();
-    
-    
-     //listeneri aprend details
-    Vector<DetailsApprendListener> detailsAprendListeners;
-    //listeneri progress changed
+    Vector<DetailsAppendListener> detailsAppendListeners;
     Vector<ProgressChangedListener> progressChangedListeners;
-    private ProgressBar progressBar=null;
     
-    public ImagePreProcessorImpl(ExtendedImage extendedImage)
+    public ImagePreProcessorImpl(File imageFile) throws FileNotFoundException
     {
-        this.extendedImage=extendedImage;
-        this.detailsAprendListeners=new Vector<>();
+        this.extendedImage = new ExtendedImage(imageFile);
+        
+        this.detailsAppendListeners=new Vector<>();
         this.progressChangedListeners=new Vector<>();
     }
     
+    @Override
+    public void preProcess() throws ValidatingException, TruncatingException {
+    	
+        if(!validate())
+            throw new ValidatingException();
+        
+        truncate();
+    }
+    
     /**
-     * Validating image.
+     * Validates image.
      * @return 
      */
     private boolean validate() {
-        apprendDetail("Validating image...");
+    	
+        appendDetail("Validating image...");
         boolean validated= new ImageValidator(extendedImage).validate();
-        apprendDetail("Image validated!");
+        appendDetail("Image validated!");
+        
         setProgress(3);
         return validated;
     }
 
     /**
-     * Truncate image.
+     * Truncates image.
      */
    
     private void truncate() throws TruncatingException {
-        apprendDetail("Truncating image...");
+    	
+        appendDetail("Truncating image...");
         ImageTruncator truncator=new ImageTruncator(extendedImage);
-        apprendDetail("Image Truncated");
+        appendDetail("Image Truncated!");
+        
         setProgress(15);
-        this.extendedImage=truncator.getTrucatedExtendedImage();
+        this.extendedImage = truncator.getTrucatedExtendedImage();
     }
     /**
-     * Get the image prerocesed.
+     * Get the preprocessed image.
      * @return 
      */
     @Override
-    public ExtendedImage getPreProcesedExtendedImage(){
+    public ExtendedImage getPreProcessedExtendedImage(){
    
         return this.extendedImage;
         
     }
 
-    
-    private void apprendDetail(String detail)
+    private void appendDetail(String detail)
     {
-       for(DetailsApprendListener listener:detailsAprendListeners)
+       for(DetailsAppendListener listener:detailsAppendListeners)
        {
-           listener.onApprendPerformed(new DetailsApprendAction(detail+"\r\n"));
+           listener.onAppendPerformed(new DetailsAppendAction(detail+"\r\n"));
        }
     }
     
@@ -86,27 +94,6 @@ public class ImagePreProcessorImpl implements ImagePreprocessor{
        {
            listener.onValueChanged(new ProgressChangedAction(value));
        }
-    }
-
-    @Override
-    public void preProcessing() throws ValidatingException, TruncatingException {
-        if(!validate())
-            throw new ValidatingException();
-        truncate();
-    }
-
-    /**
-     * @return the progressBar
-     */
-    public ProgressBar getProgressBar() {
-        return progressBar;
-    }
-
-    /**
-     * @param progressBar the progressBar to set
-     */
-    public void setProgressBar(ProgressBar progressBar) {
-        this.progressBar = progressBar;
     }
     
        @Override
@@ -120,13 +107,13 @@ public class ImagePreProcessorImpl implements ImagePreprocessor{
     }
 
     @Override
-    public void addDetailsApprendListener(DetailsApprendListener listener) {
-       this.detailsAprendListeners.add(listener);
+    public void addDetailsAppendListener(DetailsAppendListener listener) {
+       this.detailsAppendListeners.add(listener);
     }
 
     @Override
-    public void removeDetailsApprendListener(DetailsApprendListener listener) {
-       this.detailsAprendListeners.remove(listener);
+    public void removeDetailsAppendListener(DetailsAppendListener listener) {
+       this.detailsAppendListeners.remove(listener);
     }
     
 }

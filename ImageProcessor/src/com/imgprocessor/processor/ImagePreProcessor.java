@@ -5,7 +5,7 @@
  */
 package com.imgprocessor.processor;
 
-import com.imgprocessor.controller.DetailsApprendListener;
+import com.imgprocessor.controller.DetailsAppendListener;
 import com.imgprocessor.controller.ProgressChangedListener;
 
 /**
@@ -13,13 +13,13 @@ import com.imgprocessor.controller.ProgressChangedListener;
  * @author tifuivali
  * Am zis sa renuntam la convertor ..cum credeti si voi..
  */
-public interface ImagePreprocessor {
+public interface ImagePreProcessor {
     
-   void preProcessing() throws ValidatingException,TruncatingException;
+   public void preProcess() throws ValidatingException,TruncatingException;
+   public ExtendedImage getPreProcessedExtendedImage();
+   
    void addProgressChangedListener(ProgressChangedListener listener);
    void removeProgressChangedListener(ProgressChangedListener listener);
-   void addDetailsApprendListener(DetailsApprendListener listener);
-   void removeDetailsApprendListener(DetailsApprendListener listener);
-   ExtendedImage getPreProcesedExtendedImage();
-    
+   void addDetailsAppendListener(DetailsAppendListener listener);
+   void removeDetailsAppendListener(DetailsAppendListener listener);
 }

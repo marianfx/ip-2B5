@@ -16,48 +16,54 @@ import java.io.FileNotFoundException;
  *
  * @author tifuivali
  */
-public class PublicApiService
-{
-
-    RequestValidator requestValidator=null;
-    Api api=null;
-    
-    public PublicApiService()
-    {
-        
-    }
+public class PublicApiService {
+	
+    private ImageApi imageApi;
     
     /**
-     *Process the request , if type request is internal ,first parameter can be null.
-     * @param fileString
-     * @param requestType
-     * @throws Api.InproperParameterCallingRequestException
-     * @throws Api.NotSuportedFileFormatException
+     * Process the request.
+     * Instantiates a <code>RequestValidator</code> which validates the request.
+     * If the request is valid 'choose' 
+     * @param imageFilepath
+     * @throws ImageApi.InproperParameterCallingRequestException
+     * @throws ImageApi.NotSupportedFileFormatException
      * @throws java.io.FileNotFoundException
+     * @throws InternalProcessorNotFound 
      */
-    public void processRequest(String fileString,RequestType requestType) throws InproperParameterCallingRequestException, NotSuportedFileFormatException, FileNotFoundException
-    {
-        if(fileString==null&&requestType==RequestType.ExternalRequestType)
-            throw new InproperParameterCallingRequestException();
-        requestValidator=new RequestValidator(fileString);
-        requestValidator.validate();
-        api=ChooseRightImageApi(fileString, requestType);
-       
+    public void processRequest(String imageFilepath) 
+    		throws NotSupportedFileFormatException, FileNotFoundException, InternalProcessorNotFound {
+    	
+    	if(imageFilepath != null) {
+    		
+    		RequestValidator requestValidator = new RequestValidator(imageFilepath);
+    		requestValidator.validate();
+    	}
+        
+        chooseImageApi(imageFilepath);     
     }
     
     public ImageProcessedRepresentation getResult() throws ValidatingException, TruncatingException, ProcessingException
     {
-        return api.getImageProcessedRepresentation();
+        return imageApi.getImageProcessedRepresentation();
     }
     
-    private Api ChooseRightImageApi(String fileName,RequestType type) throws FileNotFoundException
-    {
-        if(type==RequestType.ExternalRequestType)
-            return new ExternalApiImpl(new File(fileName));
-        else
-        {
-            return new InternalApiImpl();
-        }
+    /**
+     * Chooses right API based on the image file path.
+     * Instantiates the image API reference. 
+     * @throws FileNotFoundException 
+     * @throws InternalProcessorNotFound 
+     */
+    private void chooseImageApi(String imageFilepath) throws FileNotFoundException, InternalProcessorNotFound {
+        
+    	if(imageFilepath != null)
+    		imageApi = new ExternalImageApiImpl(new File(imageFilepath));
+    	
+    	else if(imageApi == null)
+    		throw new InternalProcessorNotFound();
     }
-
+    
+    public ImageApi getImageApi() {
+    	
+    	return imageApi;
+    }
 }

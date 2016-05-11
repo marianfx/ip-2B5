@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Api;
+package com.imgprocessor.api;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import org.apache.commons.io.FileExistsException;
 import org.apache.commons.io.FilenameUtils;
 
 /**
@@ -16,31 +15,32 @@ import org.apache.commons.io.FilenameUtils;
  */
 public class RequestValidator {
     
-    private String filePath=null;
+    private String filePath;
     
-    public RequestValidator(String filePath)
-    {
-        this.filePath=filePath;
+    public RequestValidator(String filePath) {
+    	
+        this.filePath = filePath;
     }
     
-    public void validate() throws NotSuportedFileFormatException, FileNotFoundException
-    {
+    public void validate() throws NotSupportedFileFormatException, FileNotFoundException {
+    	
         if(!checkFileExists())
             throw new FileNotFoundException();
+        
         if(!checkFileFormat())
-            throw new NotSuportedFileFormatException(FilenameUtils.getExtension(filePath));
+            throw new NotSupportedFileFormatException(FilenameUtils.getExtension(filePath));
     }
     
-    private boolean checkFileExists()
-    {
-        File file=new File(filePath);
+    private boolean checkFileExists() {
+    	
+        File file = new File(filePath);
         return file.exists();
     }
     
-    private boolean checkFileFormat()
-    {
-       String extension= FilenameUtils.getExtension(filePath);
-       return extension.toLowerCase().equals("jpg")||extension.toLowerCase().equals("png");
+    private boolean checkFileFormat() {
+    	
+       String extension = FilenameUtils.getExtension(filePath);
+       return extension.toLowerCase().equals("jpg") || extension.toLowerCase().equals("png");
     }
     
 }
