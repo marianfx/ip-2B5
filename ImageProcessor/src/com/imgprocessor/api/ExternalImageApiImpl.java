@@ -21,7 +21,7 @@ import com.imgprocessor.processor.*;
  */
 public class ExternalImageApiImpl implements ImageApi {
 
-    private ImageProcessor imageProcessor;
+    private final ImageProcessor imageProcessor;
     
     public ExternalImageApiImpl(File imageFile) throws FileNotFoundException {
     	

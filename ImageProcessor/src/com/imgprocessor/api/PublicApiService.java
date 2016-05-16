@@ -25,8 +25,7 @@ public class PublicApiService {
      * Instantiates a <code>RequestValidator</code> which validates the request.
      * If the request is valid 'choose' 
      * @param imageFilepath
-     * @throws ImageApi.InproperParameterCallingRequestException
-     * @throws ImageApi.NotSupportedFileFormatException
+     * @throws com.imgprocessor.api.NotSupportedFileFormatException
      * @throws java.io.FileNotFoundException
      * @throws InternalProcessorNotFound 
      */

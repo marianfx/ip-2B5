@@ -12,11 +12,16 @@ import com.imgprocessor.controller.ProgressChangedListener;
 import com.imgprocessor.model.Coordinates;
 import com.imgprocessor.model.ImageProcessedRepresentation;
 import com.imgprocessor.model.Wall;
+import java.awt.image.BufferedImage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.image.Image;
+import javax.imageio.ImageIO;
 import org.opencv.core.Mat;
 
 /**
@@ -37,7 +42,7 @@ public class ImageProcessorImpl implements ImageProcessor {
     public ImageProcessorImpl(File imageFile) throws FileNotFoundException {
     	
         this.imagePreProcessor = new ImagePreProcessorImpl(imageFile);
-        
+        this.extendedImage=this.imagePreProcessor.getPreProcessedExtendedImage();
         this.detailsAppendListeners = new Vector<>();
         this.progressChangedListeners = new Vector<>();
     }
@@ -89,8 +94,16 @@ public class ImageProcessorImpl implements ImageProcessor {
     	Coordinates end=new Coordinates(5, 5);
     	Wall wall=new Wall(start, end);
     	this.imageProcessedRepresentation.addWall(wall);
-
-
+          
+        
+        /***********
+             *
+             * with this you can update image from main view
+             *
+             * testat , si merge
+        */   
+        //updateImage(buffered image to update);
+        
     	imagePreProcessor.getPreProcessedExtendedImage().setImageState(ImageState.Processed);
     	//petru setarea procesului 
     	setProgress(100);
@@ -102,16 +115,24 @@ public class ImageProcessorImpl implements ImageProcessor {
     /**
      * Procesing image and get it's representation.
      * @return the imageProcessedRepresentation
-     * @throws ImagePreProcesingPackage.ValidatingException
-     * @throws ImagePreProcesingPackage.TruncatingException
-     * @throws ImageProcesingPackage.ProcesingException
+     * @throws com.imgprocessor.processor.ValidatingException
+     * @throws com.imgprocessor.processor.TruncatingException
+     * @throws com.imgprocessor.processor.ProcessingException
      */
+    @Override
     public ImageProcessedRepresentation getImageProcessedRepresentation() throws ValidatingException, TruncatingException, ProcessingException {
         process();
         return imageProcessedRepresentation;
     }
 
 
+    
+    
+    private void updateImage(BufferedImage img)
+    {
+        this.getExtendedImage().updateImage(img);
+    }
+    
     
      private void appendDetail(String detail)
     {

@@ -35,7 +35,7 @@ import javafx.stage.Stage;
 public class MainViewController implements Initializable {
 	
 	private String imageFilepath;
-	private PublicApiService publicApiService = new PublicApiService();
+	private final PublicApiService publicApiService = new PublicApiService();
     
     private static Stage mainStage;
     @FXML
@@ -111,7 +111,15 @@ public class MainViewController implements Initializable {
 
     		   publicApiService.getImageApi().addProgressChangedListener((ProgressChangedAction a) -> {
     			   progressBar.setProgress(a.getProgress());
+                           System.out.println("pogress "+a.getProgress());
     		   });
+                   
+                   System.out.println("image procesor:"+publicApiService.getImageApi().getImageProcessor());
+                   publicApiService.getImageApi().getImageProcessor()
+                           .getExtendedImage().addImageUpdateListener((ImageUpdateAction action) -> {
+                              imageView.setImage(action.getFXImage());
+                              System.out.println("image updated");
+                       });
     	   }
            
            publicApiService.getResult();

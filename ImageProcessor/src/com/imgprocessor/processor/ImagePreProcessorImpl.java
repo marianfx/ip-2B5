@@ -49,7 +49,7 @@ public class ImagePreProcessorImpl implements ImagePreProcessor {
     private boolean validate() {
     	
         appendDetail("Validating image...");
-        boolean validated= new ImageValidator(extendedImage).validate();
+        boolean validated= new ImageValidator(getExtendedImage()).validate();
         appendDetail("Image validated!");
         
         setProgress(3);
@@ -63,7 +63,7 @@ public class ImagePreProcessorImpl implements ImagePreProcessor {
     private void truncate() throws TruncatingException {
     	
         appendDetail("Truncating image...");
-        ImageTruncator truncator=new ImageTruncator(extendedImage);
+        ImageTruncator truncator=new ImageTruncator(getExtendedImage());
         appendDetail("Image Truncated!");
         
         setProgress(15);
@@ -76,7 +76,7 @@ public class ImagePreProcessorImpl implements ImagePreProcessor {
     @Override
     public ExtendedImage getPreProcessedExtendedImage(){
    
-        return this.extendedImage;
+        return this.getExtendedImage();
         
     }
 
@@ -114,6 +114,13 @@ public class ImagePreProcessorImpl implements ImagePreProcessor {
     @Override
     public void removeDetailsAppendListener(DetailsAppendListener listener) {
        this.detailsAppendListeners.remove(listener);
+    }
+
+    /**
+     * @return the extendedImage
+     */
+    public ExtendedImage getExtendedImage() {
+        return extendedImage;
     }
     
 }

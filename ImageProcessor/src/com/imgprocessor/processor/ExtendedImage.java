@@ -5,9 +5,14 @@
  */
 package com.imgprocessor.processor;
 
+import com.imgprocessor.controller.ImageUpdateAction;
+import com.imgprocessor.controller.ImageUpdateListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.scene.image.Image;
 import org.opencv.core.Mat;
 
@@ -22,9 +27,10 @@ public class ExtendedImage {
     
     private Image image = null;
     private Mat matRepresentation = null;
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
     private ImageState imageState = null;
+    List<ImageUpdateListener> imageUpdateListeners=null;
     
     /**
      * Create a new Extended Image using a File Image.
@@ -38,6 +44,7 @@ public class ExtendedImage {
        this.width = (int)image.getWidth();
        this.height = (int)image.getHeight();
        this.imageState=ImageState.Loaded;
+       this.imageUpdateListeners=new ArrayList<>();
     }
 
     /**
@@ -95,4 +102,25 @@ public class ExtendedImage {
     public void setImageState(ImageState imageState) {
         this.imageState = imageState;
     }
+    
+    public void addImageUpdateListener(ImageUpdateListener listener)
+    {
+        this.imageUpdateListeners.add(listener);
+    }
+    
+    public void removeImageUpdateListener(ImageUpdateListener listener)
+    {
+        this.imageUpdateListeners.remove(listener);
+    }
+    
+    public void updateImage(BufferedImage bi)
+    {
+        imageUpdateListeners.stream().forEach((listener) -> {
+            listener.onUpdatePerformed(new ImageUpdateAction(bi));
+        });
+    }
+    
+ 
+    
+    
 }
