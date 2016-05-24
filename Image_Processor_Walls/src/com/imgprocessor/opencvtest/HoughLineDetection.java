@@ -142,7 +142,12 @@ public class HoughLineDetection {
 		// lines detected here
 		processor.setProgress(70);
 		
-		
+
+		// removing same lines
+//		processor.appendDetail("Removing some lines that may represent the same line.");
+//		finalImage = blackMatrix.clone();
+//		lines2 = lp.removeSameLines(lines2, 6);
+//		lp.drawLines(lines2, finalImage, WHITE, 1, false, true, processor);
 
 		processor.appendDetail("Fixing some lines (making them right) and removing small lines.");
 		finalImage = blackMatrix.clone();
@@ -178,7 +183,9 @@ public class HoughLineDetection {
 //		
 		finalImage = blackMatrix.clone();
 		
-		lines2 = lp.getLinesWithThisThickness(lines2, 20);
+		
+		//obtain single lines from multiple 
+		lines2 = lp.getLinesWithThisThickness(lines2);
 		lp.drawLines(lines2, finalImage, GREEN, 2, false, true, processor);
 		
 		 // + 10

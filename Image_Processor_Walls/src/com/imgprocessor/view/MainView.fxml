@@ -36,6 +36,17 @@
 
                   <Label AnchorPane.leftAnchor="5.0" layoutY="220.0" text="Progress:" />
                   <ProgressBar fx:id="progressBar" layoutY="245.0" prefHeight="25" progress="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.leftAnchor="5.0" />
+
+
+                  <Label layoutX="5.0" layoutY="285.0" text="Min wall width:" />
+                  <TextField fx:id="textMinWidth" layoutX="7.0" layoutY="300.0" AnchorPane.rightAnchor="5.0" AnchorPane.leftAnchor="5.0"/>
+
+
+                  <Label layoutX="5.0" layoutY="325.0" text="Max wall width:" />
+                  <TextField fx:id="textMaxWidth" layoutX="7.0" layoutY="345.0" AnchorPane.rightAnchor="5.0" AnchorPane.leftAnchor="5.0"/>
+
+
+                  <CheckBox fx:id="onlyLinesCK" text="Only walls." layoutX="7.0" layoutY="380.0" />
                </children>
 
             </AnchorPane>

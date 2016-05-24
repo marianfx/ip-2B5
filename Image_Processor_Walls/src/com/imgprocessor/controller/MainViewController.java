@@ -23,6 +23,7 @@ import com.imgprocessor.api.PublicApiService;
 import com.imgprocessor.controller.DetailsAppendAction;
 import com.imgprocessor.controller.ImageUpdateAction;
 import com.imgprocessor.controller.ProgressChangedAction;
+import com.imgprocessor.opencvtest.LineProcessor;
 import com.imgprocessor.processor.DetectObject;
 import com.imgprocessor.processor.ImageProcessorImpl;
 import com.imgprocessor.processor.ProcessingException;
@@ -31,6 +32,7 @@ import com.imgprocessor.processor.ValidatingException;
 
 import java.io.FileNotFoundException;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
@@ -59,9 +61,15 @@ public class MainViewController implements Initializable {
     @FXML
     TextField textTemplate;
     @FXML
+    TextField textMinWidth;
+    @FXML
+    TextField textMaxWidth;
+    @FXML
     TextArea textDetails;
     @FXML
     TextField textImage;
+    @FXML
+    CheckBox onlyLinesCK;
     @FXML
     ProgressBar progressBar;
     
@@ -159,6 +167,9 @@ public class MainViewController implements Initializable {
     		   ImageProcessorImpl imageProcessorImpl = new ImageProcessorImpl(new File(imageFilepath));
     		   // update info
     		   DetectObject.TEMPLATE_INPUT_PATH = "_input//" + textTemplate.getText().trim();
+    		   LineProcessor.WALL_MIN_WIDTH = Integer.parseInt(textMinWidth.getText());
+    		   LineProcessor.WALL_MAX_WIDTH = Integer.parseInt(textMaxWidth.getText());
+    		   ImageProcessorImpl.DETECT_ONLY_WALLS = onlyLinesCK.isSelected();
     		   
     		   imageProcessorImpl.addDetailsAppendListener( (DetailsAppendAction e) -> {
     			   
@@ -227,6 +238,9 @@ public class MainViewController implements Initializable {
 
         textDetails.setEditable(false);
         textTemplate.setText("templates2");
+        textMinWidth.setText("15");
+        textMaxWidth.setText("25");
+        onlyLinesCK.setSelected(false);
         //fit image
         imageView.fitWidthProperty().bind(imagePanel.widthProperty());
     }

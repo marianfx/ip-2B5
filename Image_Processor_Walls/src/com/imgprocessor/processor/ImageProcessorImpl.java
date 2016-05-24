@@ -36,6 +36,7 @@ public class ImageProcessorImpl implements ImageProcessor {
     
     private File ImageFile;
     private ImageProcessorImpl thisReff = this;
+    public static boolean DETECT_ONLY_WALLS = false;
     
     
     public ImageProcessorImpl(File imageFile) throws FileNotFoundException {
@@ -79,8 +80,10 @@ public class ImageProcessorImpl implements ImageProcessor {
 			
 			public void run() {
 				
-				DetectObject objectDetector = new DetectObject(ImageFile.getAbsolutePath(), thisReff);
-		        objectDetector.detectAllObject();
+				if(!DETECT_ONLY_WALLS){
+					DetectObject objectDetector = new DetectObject(ImageFile.getAbsolutePath(), thisReff);
+			        objectDetector.detectAllObject();
+		        }
 		        
 		        HoughLineDetection houghLineDetection = new HoughLineDetection(DetectObject.TEMPLATE_OUTPUT_PATH, thisReff);
     	        houghLineDetection.detectLines();

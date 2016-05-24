@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+import javax.swing.text.AbstractDocument.LeafElement;
 
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -25,6 +26,9 @@ public class LineProcessor {
 
 	List<Line> lines;
 	public static Integer drawID = 0;
+	
+	public static volatile Integer WALL_MIN_WIDTH;
+	public static volatile Integer WALL_MAX_WIDTH;
 	
 	
 	/**
@@ -212,10 +216,12 @@ public class LineProcessor {
 		for(int x = 0; x < theLines.size(); x++){
 
 			Line l1 = theLines.get(x);
+			l1.normalizeAfterXAxys();
 			
 			for(int y = x + 1; y < theLines.size(); y++)
 			{
 				Line l2 = theLines.get(y);
+				l2.normalizeAfterXAxys();
 
 				double distanceStart 	= getDistance(new Point(l1.x1, l1.y1), new Point(l2.x1, l2.y1));
 				double distanceEnd 		= getDistance(new Point(l1.x2, l1.y2), new Point(l2.x2, l2.y2));
@@ -238,7 +244,7 @@ public class LineProcessor {
 	}
 	
 	
- 	public List<Line> getLinesWithThisThickness(List<Line> theLines, int thickness){
+ 	public List<Line> getLinesWithThisThickness(List<Line> theLines){
 
 		
 		boolean found = false;
@@ -311,7 +317,7 @@ public class LineProcessor {
 				//first unite the heads
 				// 15 - 25
 				// 6 - 50
-				if(l1.isNotPerpendicular(l2) && distance >= 15 && distance <= 25 ){
+				if(l1.isNotPerpendicular(l2) && distance >= WALL_MIN_WIDTH && distance <= WALL_MAX_WIDTH ){
 					
 //					if((Math.abs(minStart.x - minEnd.x) <= limitSoTheyAreTheSame) || Math.abs(minStart.y - minEnd.y) <= limitSoTheyAreTheSame){
 					
