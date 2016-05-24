@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
-import javax.swing.text.AbstractDocument.LeafElement;
 
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -131,33 +130,24 @@ public class LineProcessor {
 				
 				double minDist = Math.min(Math.min(distanceEE, distanceSS), Math.min(distanceES, distanceSE));
 				
-				Point minStart = null;
-				Point minEnd   = null;
 				Point maxStart = null;
 				Point maxEnd   = null;
 
-				Line closestLine = null;
 				Line otherLine = null;
 				
 				if(minDist == distanceSS){
-					closestLine = new Line(l1Start, l2Start);
 					otherLine   = new Line(l1End, l2End);
 				}
 				else if(minDist == distanceEE){
-					closestLine =  new Line(l1End, l2End);
 					otherLine   = new Line(l1Start, l2Start);
 				}
 				else if(minDist == distanceSE){
-					closestLine =  new Line(l1Start, l2End);
 					otherLine   = new Line(l1End, l2Start);
 				}
 				else if(minDist == distanceES){
-					closestLine =  new Line(l1End, l2Start);
 					otherLine   = new Line(l1Start, l2End);
 				}
 				
-				minStart = closestLine.getStartingPoint();
-				minEnd = closestLine.getEndingPoint();
 				
 
 				maxStart = otherLine.getStartingPoint();
@@ -302,9 +292,6 @@ public class LineProcessor {
 				Point end1 = new Point(x4, y4);
 				
 
-				double dist1 = getDistance(p1, start1);
-				double dist2 = getDistance(p2, end1);
-				double mindist = Math.min(dist1,  dist2);
 				
 				
 				Equation fleq = l1.getEquation();

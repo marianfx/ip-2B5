@@ -2,8 +2,6 @@ package com.imgprocessor.model;
 
 import java.util.Comparator;
 
-import javax.print.attribute.standard.OrientationRequested;
-
 import org.opencv.core.Point;
 
 public class Line implements Comparator<Line> {

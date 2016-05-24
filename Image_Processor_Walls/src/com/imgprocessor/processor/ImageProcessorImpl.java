@@ -21,8 +21,6 @@ import java.beans.XMLEncoder;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Vector;
 /**
@@ -83,7 +81,7 @@ public class ImageProcessorImpl implements ImageProcessor {
 		// loads the opencv 310 library for fillConvexPoly and all the others
 		System.loadLibrary("opencv_java310");
 		
-		imageRepresentation= new Representation();
+		imageRepresentation = new Representation();
 		
 		
 		// run template detection && line detection in another thread
@@ -91,26 +89,36 @@ public class ImageProcessorImpl implements ImageProcessor {
 			
 			public void run() {
 				
+				// object detection
 				if(!DETECT_ONLY_WALLS){
 					DetectObject objectDetector = new DetectObject(ImageFile.getAbsolutePath(), thisReff);
 			        objectDetector.detectAllObject();
 		        }
 		        
+				// line detection
 		        HoughLineDetection houghLineDetection = new HoughLineDetection(DetectObject.TEMPLATE_OUTPUT_PATH, thisReff);
-		        List<Line> detectedWalls= houghLineDetection.detectLines();
+		        List<Line> detectedWalls = houghLineDetection.detectLines();
 		        imageRepresentation.populateWalls(detectedWalls);
 		        
-		   try {
-			XMLEncoder  myEncoder= new XMLEncoder(new FileOutputStream ("Fisier.xml"));
-			myEncoder.writeObject(imageRepresentation);
-			myEncoder.flush();
-			myEncoder.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-				
+		        //xml encode
+		        thisReff.setProgress(0);
+		        thisReff.appendDetail("Serializing the representation into 'Representation.xml'...");
+				try {
+					   
+					XMLEncoder  myEncoder = new XMLEncoder(new FileOutputStream ("Representation.xml"));
+					myEncoder.writeObject(imageRepresentation);
+					myEncoder.flush();
+					myEncoder.close();
+
+			        thisReff.setProgress(100);
+			        thisReff.appendDetail("Finished serialization.");
+					
+				} catch (FileNotFoundException e) {
+					thisReff.appendDetail("FAILED!");
+					e.printStackTrace();
+				}
 			};
+			
 		}.start();
 		
     }

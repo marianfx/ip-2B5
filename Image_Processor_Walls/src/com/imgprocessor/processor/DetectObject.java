@@ -4,6 +4,7 @@ package com.imgprocessor.processor;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,6 +34,7 @@ import com.imgprocessor.model.Coordinates;
 import com.imgprocessor.model.Door;
 import com.imgprocessor.model.ImageProcessedRepresentation;
 import com.imgprocessor.model.Line;
+import com.imgprocessor.model.Stairs;
 import com.imgprocessor.model.Window;
 import com.imgprocessor.opencvtest.LineProcessor;
 
@@ -300,6 +302,8 @@ public class DetectObject
 		for (int i = 0; i < templates.length; i++) {
 
 			String template = templates[i];
+			
+			if(!(template.endsWith(".jpg") || template.endsWith(".png"))) continue;
 
 			if(i == 1)
 				filePath = outputImage;
@@ -310,7 +314,7 @@ public class DetectObject
 
 				List<PointsWrapper> doors = removeObject("door", path, filePath, outputImage);
 				
-				for(int k=0;k<doors.size();k++)
+				for(int k = 0; k < doors.size(); k++)
 				{
 
 					this.processor.imageRepresentation.addDoor(
@@ -326,6 +330,18 @@ public class DetectObject
 			else if(template.contains("stair")){
 
 				List<PointsWrapper> stairs = removeObject("stair", path, filePath, outputImage);
+				for (PointsWrapper points : stairs) {
+					
+					List<Coordinates> corners = new ArrayList<>();
+					Coordinates start 	= new Coordinates((float)points.point1.x,(float)points.point1.y);
+					Coordinates end 	= new Coordinates((float)points.point2.x,(float)points.point2.y);
+					Coordinates other1	= new Coordinates((float)points.point3.x,(float)points.point3.y);
+					Coordinates other2	= new Coordinates((float)points.point4.x,(float)points.point4.y);
+					
+					corners.addAll(Arrays.asList(start, end, other1, other2));
+					
+					this.processor.imageRepresentation.addStair(new Stairs(start, end, corners));
+				}
 				//add to representation
 			}
 			else if(template.contains("window")){
@@ -333,7 +349,7 @@ public class DetectObject
 				List<PointsWrapper> windows = removeObject("window", path, filePath, outputImage);
 				//add to representation
 				
-				for(int k=0;k<windows.size();k++)
+				for(int k = 0; k < windows.size(); k++)
 				{
 					this.processor.imageRepresentation.addWindow(
 							new Window(
