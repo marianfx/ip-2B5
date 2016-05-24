@@ -7,6 +7,8 @@ import com.imgmodel.buildingParts.Window;
 import com.imgmodel.graphModel.Graph;
 import com.imgmodel.graphModel.Room;
 import com.imgmodel.graphView.controller.MainController;
+import com.imgprocessor.controller.ImageProcessorApp;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,12 +28,12 @@ public class GraphMain extends Application {
     private FXMLLoader fxmlLoader;
     private Pane p;
     private MainController myController;
-    private static Graph graph;
+    public static volatile Graph graph;
     private Stage stage;
 
     public GraphMain(){
-        Graph graph=new Graph();
-        Room room1=new Room("camera 1","parter");
+        Graph graph = new Graph();
+        Room room1 = new Room("camera 1","parter");
         room1.addBuildingPart(new Wall(new Coordinates(0,0),new Coordinates(0,5)));
         room1.addBuildingPart(new Wall(new Coordinates(0,5),new Coordinates(5,5)));
         room1.addBuildingPart(new Window(new Coordinates(3,0),new Coordinates(4,0)));
@@ -55,6 +57,7 @@ public class GraphMain extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
+        	
             Scene scene = new Scene(new Pane());
             fxmlLoader = new FXMLLoader(
                     getClass().getResource("/com/imgmodel/graphView/GraphView.fxml")
@@ -63,6 +66,8 @@ public class GraphMain extends Application {
             myController =fxmlLoader.<MainController>getController();
 //            myController.initManager(this);
 
+            
+            
             myController.setGraph(this);
             primaryStage.setScene(scene);
             primaryStage.resizableProperty().setValue(Boolean.TRUE);
@@ -73,7 +78,14 @@ public class GraphMain extends Application {
 
 
             primaryStage.show();
-            this.stage=primaryStage;
+            this.stage = primaryStage;
+            
+
+            //the new stage
+            Stage newStage = new Stage();
+            ImageProcessorApp processorApp = new ImageProcessorApp();
+            processorApp.start(newStage);
+            
 
         } catch(Exception e) {
             e.printStackTrace();
@@ -84,9 +96,9 @@ public class GraphMain extends Application {
        // GraphMain graphMain=new GraphMain();
 
         launch(args);
-        FileSystemView fileSystemView=FileSystemView.getFileSystemView();
-        String desktop=fileSystemView.getHomeDirectory().toString();
-        File folder=new File(desktop);
+        FileSystemView fileSystemView = FileSystemView.getFileSystemView();
+        String desktop = fileSystemView.getHomeDirectory().toString();
+        File folder = new File(desktop);
         Arrays.stream(folder.listFiles((f, p) -> p.endsWith(".xml"))).forEach(File::delete);
     }
 

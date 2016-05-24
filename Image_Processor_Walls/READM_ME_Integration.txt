@@ -1,0 +1,11 @@
+1. Aplicatia porneste. Deschide fereastra facuta de Model, dar deasupra ii deschide o alta fereastra pentru Image Processing, caci aceasta e prima parte.
+
+2. In image processing, se face Load la imagine (din folderul input, fiecare imagine trebuie sa aiba propriul ei folder cu template-uri care sa fie detectate) si se porneste procesarea. Aceasta detecteaza automat tot ceea ce e de detectat si serializeaza in fisierul xml descris de ImageProcImpl.SAVE_XML_PATH.
+
+3. Modul Graf - Clasa algoritm e principala. In ea, in functia initialize() incarc din xml obiectul Representation, care contine liste de Walls, Doors etc detectate in prima instanta de celalalt modul.
+
+4. Fereastra de image processor inca nu s-a inchis. Tot aici e rulat si algoritmul pentru graph, cu informatii despre rulare in casuta de log. Modulul Graph creeaza un obiect GRAPH, pe care il serializez in fisierul Graph.xml.
+
+5. Inchid fereastra ImageProcessor, revin la fereastra cealalta, pot incarca graful (din XML, sau e direct pus si in memorie, pentru ca obiectul graph din MainController e static)
+
+6. Do whatever that window is doing.

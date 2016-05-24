@@ -5,6 +5,12 @@
  */
 package com.imgprocessor.processor;
 
+import com.imggraph.Algorithm;
+import com.imggraph.Connector;
+import com.imgmodel.graphModel.Graph;
+import com.imgmodel.graphModel.Room;
+import com.imgmodel.main.GraphMain;
+import com.imgmodel.serialization.Serializer;
 import com.imgprocessor.controller.DetailsAppendAction;
 import com.imgprocessor.controller.DetailsAppendListener;
 import com.imgprocessor.controller.ImageUpdateAction;
@@ -20,6 +26,7 @@ import java.beans.XMLEncoder;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
 /**
@@ -29,7 +36,6 @@ import java.util.Vector;
 public class ImageProcessorImpl implements ImageProcessor {
     
     private ImagePreProcessor imagePreProcessor;
-    private ExtendedImage extendedImage;
     
     private Vector<DetailsAppendListener> detailsAppendListeners;
     private Vector<ProgressChangedListener> progressChangedListeners;
@@ -38,6 +44,7 @@ public class ImageProcessorImpl implements ImageProcessor {
     private File ImageFile;
     private ImageProcessorImpl thisReff = this;
     public static boolean DETECT_ONLY_WALLS = false;
+    public volatile static String SAVED_XML_PATH = null;
     
     public Representation imageRepresentation;
     
@@ -46,7 +53,6 @@ public class ImageProcessorImpl implements ImageProcessor {
     public ImageProcessorImpl(File imageFile) throws FileNotFoundException {
     	
         this.imagePreProcessor = new ImagePreProcessorImpl(imageFile);
-        this.extendedImage=this.imagePreProcessor.getPreProcessedExtendedImage();
         this.detailsAppendListeners = new Vector<>();
         this.progressChangedListeners = new Vector<>();
         this.imageChangedListeners = new Vector<>();
@@ -97,18 +103,29 @@ public class ImageProcessorImpl implements ImageProcessor {
 		        List<Line> detectedWalls = houghLineDetection.detectLines();
 		        imageRepresentation.populateWalls(detectedWalls);
 		        
+		        thisReff.appendDetail("Walls detected: " + detectedWalls.size());
+		        for (Line line : detectedWalls) {
+					thisReff.appendDetail("(" + (int)line.x1 + ", " + (int)line.y1 + ") --> " + "(" + (int)line.x2 + ", " + (int)line.y2 + ")");
+				}
+		        
 		        //xml encode
 		        thisReff.setProgress(0);
 		        thisReff.appendDetail("Serializing the representation into 'Representation.xml'...");
 				try {
-					   
-					XMLEncoder  myEncoder = new XMLEncoder(new FileOutputStream ("Representation.xml"));
+					  
+					SAVED_XML_PATH = "Representation.xml";
+					XMLEncoder  myEncoder = new XMLEncoder(new FileOutputStream (SAVED_XML_PATH));
 					myEncoder.writeObject(imageRepresentation);
 					myEncoder.flush();
 					myEncoder.close();
 
 			        thisReff.setProgress(100);
 			        thisReff.appendDetail("Finished serialization.");
+			        
+			        
+			        // RUN THE Graph Module Algorithm
+			        runGraphALgorithm();
+			        
 					
 				} catch (FileNotFoundException e) {
 					thisReff.appendDetail("FAILED!");
@@ -118,6 +135,58 @@ public class ImageProcessorImpl implements ImageProcessor {
 			
 		}.start();
 		
+    }
+    
+    public void runGraphALgorithm(){
+    	
+    	// HERE, RUNNING ALGORITHM
+    	thisReff.appendDetail("Running the rooms graph detection...");
+    	
+        Algorithm algorithm = new Algorithm();// initialized and read data from the file
+        List<Room> rooms = algorithm.getRoomList();
+        
+        if(rooms.size() == 0){
+        	
+        	thisReff.appendDetail("No rooms detected.");
+        }
+        else{
+        	
+        	thisReff.appendDetail("Rooms: ");
+        	
+			for(int i=0;i<rooms.size();i++){
+				String strin = "Camera " + (i+1) + ": ";
+				
+				for(int j = 0; j < rooms.get(i).getParts().size(); j++){
+					strin += rooms.get(i).getParts().get(j).toString() + "(" + 
+				rooms.get(i).getParts().get(j).getStart().getX()+"," + 
+				rooms.get(i).getParts().get(j).getStart().getY() + "-->" + 
+				rooms.get(i).getParts().get(j).getEnd().getX()+"," + 
+				rooms.get(i).getParts().get(j).getEnd().getY() + ") ";
+					
+					appendDetail(strin);
+				}
+				
+			}
+			
+        }
+        
+        Connector c = new Connector(rooms);
+		c.connect();
+		algorithm.getStairsMatch();
+		
+		rooms = c.getRooms();
+		
+		Graph g = new Graph(rooms, c.getGraphEdges());
+		GraphMain.graph = g;
+		
+		Serializer serializer = new Serializer(new File("Graph.xml"));
+		try {
+			serializer.saveXML(g);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		thisReff.appendDetail("Finished. Now you can close this window.");
     }
 
     
@@ -176,10 +245,5 @@ public class ImageProcessorImpl implements ImageProcessor {
        this.getImagePreprocessor().removeDetailsAppendListener(listener);
     }
 
-    @Override
-    public ExtendedImage getExtendedImage() {
-    	
-        return this.extendedImage;
-    }
     
 }
