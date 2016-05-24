@@ -52,7 +52,8 @@ public class GraphTest {
         assertEquals(graph.getListOfRoomsString(),expectedResult);
     }
 
-    @Test
+    @SuppressWarnings("serial")
+	@Test
     public void bfsTest1() throws Exception {
         System.out.println("Room1 is connected only with room2");
         Graph graph=new Graph();
@@ -99,7 +100,8 @@ public class GraphTest {
     }
 
 
-    @Test
+    @SuppressWarnings("serial")
+	@Test
     public void bfsTest3() throws Exception {
         System.out.println("Room1 is connected with 2 other rooms, while one of them is connected with another room");
         Graph graph=new Graph();
@@ -129,7 +131,8 @@ public class GraphTest {
     }
 
 
-    @Test
+    @SuppressWarnings("serial")
+	@Test
     public void bfsTest4() throws Exception {
         System.out.println("Graph forms a cycle");
         Graph graph=new Graph();
@@ -158,7 +161,8 @@ public class GraphTest {
        //System.out.println(graph.bfs(room1));
     }
 
-    @Test
+    @SuppressWarnings("serial")
+	@Test
     public void splitGraphTest1() throws Exception {
         System.out.println("All nodes form a connected component");
         Graph graph=new Graph();
@@ -182,7 +186,8 @@ public class GraphTest {
     }
 
 
-    @Test
+    @SuppressWarnings("serial")
+	@Test
     public void splitGraphTest2() throws Exception {
         System.out.println("2 connected components in graph");
         Graph graph=new Graph();
@@ -213,7 +218,7 @@ public class GraphTest {
         Graph graph=new Graph();
         Room room1=new Room("camera 1","parter");
         Room room2=new Room("camera 2","parter");
-        Room room3=new Room("camera 3","etaj 1"); //room3 not added to graph
+//        Room room3=new Room("camera 3","etaj 1"); //room3 not added to graph
         Room room4=new Room("camera 4","etaj 2");
 
         graph.addNode(room1);
