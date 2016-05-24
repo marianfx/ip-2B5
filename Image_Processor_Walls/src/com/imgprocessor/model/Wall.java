@@ -12,6 +12,10 @@ public class Wall extends BuildingPart {
         this.width = 0;
 
     }
+    public Wall()
+    {
+    	super(new Coordinates(0,0),new Coordinates(0,0));
+    }
 
 
     public Wall(Coordinates start,Coordinates end,float width){

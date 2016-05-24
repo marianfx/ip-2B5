@@ -29,39 +29,45 @@ import org.opencv.features2d.Features2d;
 import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 
+import com.imgprocessor.model.Coordinates;
+import com.imgprocessor.model.Door;
 import com.imgprocessor.model.ImageProcessedRepresentation;
+import com.imgprocessor.model.Line;
+import com.imgprocessor.model.Window;
+import com.imgprocessor.opencvtest.LineProcessor;
 
 
 public class DetectObject
 {
 	class PointsWrapper{
-		
+
 		public Point point1, point2, point3, point4;
-		
+
 		public PointsWrapper(Point p1, Point p2, Point p3, Point p4) {
-			
+
 			this.point1 = p1;
 			this.point2 = p2;
 			this.point3 = p3;
 			this.point4 = p4;
 		}
 	}
-	
+
 	private String filePath;
 	private ImageProcessorImpl processor;
 	public static String TEMPLATE_OUTPUT_PATH = "_output//template_output.jpg";
 	public static String TEMPLATE_INPUT_PATH  = "_input//templates2";
-	
+
 	public static String[] templates = new String[]{"door", "stair", "window", "elevator", "hydrant", "electricpanel"};
-	
+
 	Point point1, point2, point3, point4;
-	
+
+
 	public DetectObject(String filePath, ImageProcessorImpl processor){
-		
+
 		this.filePath = filePath;
 		this.processor = processor;
 	}
-	
+
 	/**
 	 * Finds an object into the specified image
 	 */
@@ -101,11 +107,11 @@ public class DetectObject
 		//System.out.println("Matching object and scene images...");
 		descriptorMatcher.knnMatch(objectDescriptors, sceneDescriptors, matches, 2);
 
-		
+
 		//System.out.println("Calculating good match list...");
 		LinkedList<DMatch> goodMatchesList = new LinkedList <DMatch>();
-		
-		
+
+
 		float nndrRatio = 0.7f;
 
 		for (int i = 0; i < matches.size(); i++)
@@ -115,14 +121,14 @@ public class DetectObject
 			DMatch m1 = dmatcharray[0];
 			DMatch m2 = dmatcharray[1];
 
-		
+
 			if (m1.distance <= m2.distance * nndrRatio)
 			{
 				goodMatchesList.addLast(m1);
 
 			}
 		}
-		
+
 		Features2d.drawMatches(objectImage, objectKeyPoints, sceneImage, sceneKeyPoints, matches.get(0) , matchoutput, matchestColor, newKeypointColor, new MatOfByte(), 2);
 
 		// write out the good matches
@@ -160,14 +166,42 @@ public class DetectObject
 			//System.out.println("Transforming object corners to scene corners...");
 			Core.perspectiveTransform(obj_corners, scene_corners, homography);
 
+			List<Line> lines=new  ArrayList<Line>();
 
-			point1 = new Point(scene_corners.get(0, 0));
-			point2 = new Point(scene_corners.get(1, 0));
-			point3 = new Point(scene_corners.get(2, 0));
-			point4 = new Point(scene_corners.get(3, 0));
+			Line l1=new Line(new Point(scene_corners.get(0, 0)), new Point(scene_corners.get(1, 0)));
+			Line l2=new Line(new Point(scene_corners.get(1, 0)), new Point(scene_corners.get(2, 0)));
+			Line l3=new Line(new Point(scene_corners.get(2, 0)), new Point(scene_corners.get(3, 0)));
+			Line l4=new Line(new Point(scene_corners.get(3, 0)), new Point(scene_corners.get(0, 0)));
+			lines.add(l1);
+			lines.add(l2);
+			lines.add(l3);
+			lines.add(l4);
+
+			int error=20;
+			LineProcessor lineProc= new LineProcessor(lines); 
+			List <Line> rightLines= lineProc.makeLinesRight(lines,error);
+
+			System.out.println(rightLines.get(0).toString());
+	//			Imgproc.line(img, rightLines.get(0).getStartingPoint(),rightLines.get(0).getEndingPoint(), new Scalar(255, 0, 0 ), 4);
+//				Imgproc.line(img, rightLines.get(1).getStartingPoint(), rightLines.get(1).getEndingPoint(), new Scalar(0, 255, 0), 4);
+//				Imgproc.line(img, rightLines.get(2).getStartingPoint(), rightLines.get(2).getEndingPoint(), new Scalar(0, 0, 255), 4);
+//				Imgproc.line(img, rightLines.get(3).getStartingPoint(), rightLines.get(3).getEndingPoint(), new Scalar(0, 255, 255), 4);
+
+			point1=rightLines.get(0).getStartingPoint();
+			point2=rightLines.get(0).getEndingPoint();
+			point3=rightLines.get(2).getStartingPoint(); 
+			point4=rightLines.get(2).getEndingPoint();
 			
+			
+
+
+//			point1 = new Point(scene_corners.get(0, 0));
+//			point2 = new Point(scene_corners.get(1, 0));
+//			point3 = new Point(scene_corners.get(2, 0));
+//			point4 = new Point(scene_corners.get(3, 0));
+
 			MatOfPoint matPoints=new MatOfPoint(point1,point2,point3,point4);
-			
+
 
 			Imgproc.fillConvexPoly(img, matPoints, new Scalar(255,255,255));
 			//Core.rectangle(img, matchLoc , new Point(scene_corners.get(2, 0)), new Scalar(255,255,255),-1);
@@ -186,107 +220,148 @@ public class DetectObject
 			return null;
 		}
 	}
-	
+
 	public List<PointsWrapper> removeObject(String objName, String object, String scene, String outputImage){
 
 		List<PointsWrapper> output = new ArrayList<>();
 		int nrObjects = 0;
-		
+
 		processor.appendDetail("Searching " + objName + " in " + scene);
-		
+
 		Mat objectImage = Highgui.imread(object, Highgui.CV_LOAD_IMAGE_COLOR);
 		Mat sceneImage = Highgui.imread(scene, Highgui.CV_LOAD_IMAGE_COLOR);
-		
+
 		Mat aux = sceneImage, aux2;
 		aux2 = find_object(objectImage, aux);
-		
+
 		while(aux2 != null)
 		{	
 			nrObjects++;
 			processor.appendDetail("Found one " + objName + ".");
 			output.add(new PointsWrapper(point1, point2, point3, point4));
+			
+			if(point1.y==point2.y){
+				if(point1.x<point2.x){
+					point1.y+=8;
+					point2.y+=8;	
+				}else{
+					point1.y-=8;
+					point2.y-=8;
+				}
+				//Imgproc.line(aux2, point1,point2, new Scalar(0, 255, 0 ), 5);
+			}
+			
+			if(point1.x==point2.x){
+				if(point1.y<point2.y){
+					point1.x-=10;
+					point2.x-=10;
+				}else{
+					point1.x+=10;
+					point2.x+=10;
+				}
+				//Imgproc.line(aux2, point1,point2, new Scalar(255, 0, 0 ), 5);
+			}
 			aux = aux2;
 			aux2 = find_object(objectImage,aux);
 		}
-		
+
 		processor.appendDetail("Updated in image " + outputImage);
 		Highgui.imwrite(outputImage, aux);
 		try {
-			
+
 			processor.updateImage(ImageIO.read(new File(outputImage)));
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		processor.appendDetail("No. of objects of type " + objName + " found: " + nrObjects);
-		
-		
+
+
 		return output;
 	}
-	
-	
+
+
 	public ImageProcessedRepresentation detectAllObject()
 	{
 		ImageProcessedRepresentation output = new ImageProcessedRepresentation();
 		processor.appendDetail("Started detecting objects.");
-		
+
 		String outputImage = TEMPLATE_OUTPUT_PATH;
-		
+
 		// get all files from template folder
 		String[] templates = new File(TEMPLATE_INPUT_PATH).list();
 		String path;
-		
+
 		Integer processStep = (int) Math.floor( 100.0 / (double)templates.length);
 		Integer currentProgress = 0;
 		processor.setProgress(10);
-		
+
 		for (int i = 0; i < templates.length; i++) {
 
 			String template = templates[i];
-			
+
 			if(i == 1)
 				filePath = outputImage;
-			
+
 			path = TEMPLATE_INPUT_PATH + "//" + template;
-			
+
 			if(template.contains("door")){
-				
+
 				List<PointsWrapper> doors = removeObject("door", path, filePath, outputImage);
 				
+				for(int k=0;k<doors.size();k++)
+				{
+
+					this.processor.imageRepresentation.addDoor(
+							new Door(
+									new Coordinates((float)doors.get(k).point1.x,(float)doors.get(k).point1.y),
+									new Coordinates((float)doors.get(k).point2.x,(float)doors.get(k).point2.y)));
+					
+				}
+
 				//add to representation
+				
 			}
 			else if(template.contains("stair")){
-				
+
 				List<PointsWrapper> stairs = removeObject("stair", path, filePath, outputImage);
 				//add to representation
 			}
 			else if(template.contains("window")){
-				
+
 				List<PointsWrapper> windows = removeObject("window", path, filePath, outputImage);
 				//add to representation
+				
+				for(int k=0;k<windows.size();k++)
+				{
+					this.processor.imageRepresentation.addWindow(
+							new Window(
+									new Coordinates((float)windows.get(k).point1.x,(float)windows.get(k).point1.y),
+									new Coordinates((float)windows.get(k).point2.x,(float)windows.get(k).point2.y)));
+				}
 			}
 			else {
 				//remove any other possible objects found there
 				String name = template.substring(0, template.lastIndexOf('.'));
 				removeObject(name, path, filePath, outputImage);
 			}
-			
+
 			currentProgress = currentProgress + processStep;
 			currentProgress = currentProgress > 100 ? 100 : currentProgress;
 			processor.setProgress(currentProgress);
 		}
-		
+
 		processor.appendDetail("Done. Detected all objects.");
-		
+
 		try {
-			
+
 			processor.updateImage(ImageIO.read(new File(TEMPLATE_OUTPUT_PATH)));
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return output;
 	}
 }

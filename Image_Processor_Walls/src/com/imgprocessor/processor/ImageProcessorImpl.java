@@ -12,12 +12,18 @@ import com.imgprocessor.controller.ImageUpdateListener;
 import com.imgprocessor.controller.ProgressChangedAction;
 import com.imgprocessor.controller.ProgressChangedListener;
 import com.imgprocessor.model.ImageProcessedRepresentation;
+import com.imgprocessor.model.Line;
+import com.imgprocessor.model.Representation;
 import com.imgprocessor.opencvtest.HoughLineDetection;
 
 import java.awt.image.BufferedImage;
-
+import java.beans.XMLEncoder;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.List;
 import java.util.Vector;
 /**
  *
@@ -37,6 +43,9 @@ public class ImageProcessorImpl implements ImageProcessor {
     private File ImageFile;
     private ImageProcessorImpl thisReff = this;
     public static boolean DETECT_ONLY_WALLS = false;
+    
+    public Representation imageRepresentation;
+    
     
     
     public ImageProcessorImpl(File imageFile) throws FileNotFoundException {
@@ -74,6 +83,8 @@ public class ImageProcessorImpl implements ImageProcessor {
 		// loads the opencv 310 library for fillConvexPoly and all the others
 		System.loadLibrary("opencv_java310");
 		
+		imageRepresentation= new Representation();
+		
 		
 		// run template detection && line detection in another thread
 		new Thread(){
@@ -86,7 +97,19 @@ public class ImageProcessorImpl implements ImageProcessor {
 		        }
 		        
 		        HoughLineDetection houghLineDetection = new HoughLineDetection(DetectObject.TEMPLATE_OUTPUT_PATH, thisReff);
-    	        houghLineDetection.detectLines();
+		        List<Line> detectedWalls= houghLineDetection.detectLines();
+		        imageRepresentation.populateWalls(detectedWalls);
+		        
+		   try {
+			XMLEncoder  myEncoder= new XMLEncoder(new FileOutputStream ("Fisier.xml"));
+			myEncoder.writeObject(imageRepresentation);
+			myEncoder.flush();
+			myEncoder.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
 			};
 		}.start();
 		

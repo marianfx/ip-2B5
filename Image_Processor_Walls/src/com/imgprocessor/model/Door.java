@@ -9,6 +9,10 @@ public class Door extends BuildingPart {
         super(start,end);
         this.openingDimension = this.getStart().getDistance(this.getEnd());
     }
+    public Door()
+    {
+    	super(new Coordinates(0,0),new Coordinates(0,0));
+    }
 
     @Override
     public boolean equals(Object o) {

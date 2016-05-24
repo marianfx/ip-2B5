@@ -9,6 +9,10 @@ public class Window extends BuildingPart {
     super(start,end);
     this.length = this.getStart().getDistance(this.getEnd());
   }
+  public Window()
+  {
+	  super(new Coordinates(0,0),new Coordinates(0,0));
+  }
 
     public float getLength() {
     return length;

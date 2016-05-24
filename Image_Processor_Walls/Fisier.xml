@@ -1,0 +1,3204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_73" class="java.beans.XMLDecoder">
+ <object class="com.imgprocessor.model.Representation" id="Representation0">
+  <void property="walls">
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall0">
+     <void property="end">
+      <void property="x">
+       <float>1362.2673</float>
+      </void>
+      <void property="y">
+       <float>1193.1218</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>42.517212</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1362.2673</float>
+      </void>
+      <void property="y">
+       <float>1150.6046</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall1">
+     <void property="end">
+      <void property="x">
+       <float>668.08417</float>
+      </void>
+      <void property="y">
+       <float>1270.6443</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>106.26294</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>668.08417</float>
+      </void>
+      <void property="y">
+       <float>1164.3813</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall2">
+     <void property="end">
+      <void property="x">
+       <float>347.50974</float>
+      </void>
+      <void property="y">
+       <float>1249.3813</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>60.004883</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>347.50974</float>
+      </void>
+      <void property="y">
+       <float>1189.3765</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall3">
+     <void property="end">
+      <void property="x">
+       <float>4426.465</float>
+      </void>
+      <void property="y">
+       <float>256.89368</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>47.538147</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>4426.465</float>
+      </void>
+      <void property="y">
+       <float>209.35553</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall4">
+     <void property="end">
+      <void property="x">
+       <float>3977.6628</float>
+      </void>
+      <void property="y">
+       <float>210.62749</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>43.764587</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3977.6628</float>
+      </void>
+      <void property="y">
+       <float>166.8629</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall5">
+     <void property="end">
+      <void property="x">
+       <float>4305.6265</float>
+      </void>
+      <void property="y">
+       <float>227.34824</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>42.50049</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>4263.126</float>
+      </void>
+      <void property="y">
+       <float>227.34824</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall6">
+     <void property="end">
+      <void property="x">
+       <float>4304.3784</float>
+      </void>
+      <void property="y">
+       <float>188.5508</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>41.25</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>4263.1284</float>
+      </void>
+      <void property="y">
+       <float>188.5508</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall7">
+     <void property="end">
+      <void property="x">
+       <float>4262.5933</float>
+      </void>
+      <void property="y">
+       <float>186.9013</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>45.05484</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>4262.5933</float>
+      </void>
+      <void property="y">
+       <float>141.84647</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall8">
+     <void property="end">
+      <void property="x">
+       <float>4305.5747</float>
+      </void>
+      <void property="y">
+       <float>186.89003</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>45.03528</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>4305.5747</float>
+      </void>
+      <void property="y">
+       <float>141.85475</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall9">
+     <void property="end">
+      <void property="x">
+       <float>4052.0977</float>
+      </void>
+      <void property="y">
+       <float>374.37402</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>233.75049</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>4052.0977</float>
+      </void>
+      <void property="y">
+       <float>140.62354</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall10">
+     <void property="end">
+      <void property="x">
+       <float>4089.4082</float>
+      </void>
+      <void property="y">
+       <float>374.3748</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>232.49998</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>4089.4082</float>
+      </void>
+      <void property="y">
+       <float>141.8748</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall11">
+     <void property="end">
+      <void property="x">
+       <float>3931.4138</float>
+      </void>
+      <void property="y">
+       <float>374.37674</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>160.00267</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3931.4138</float>
+      </void>
+      <void property="y">
+       <float>214.37407</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall12">
+     <void property="end">
+      <void property="x">
+       <float>706.8584</float>
+      </void>
+      <void property="y">
+       <float>1641.951</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>66.22107</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>640.6373</float>
+      </void>
+      <void property="y">
+       <float>1641.951</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall13">
+     <void property="end">
+      <void property="x">
+       <float>1200.6373</float>
+      </void>
+      <void property="y">
+       <float>1643.6993</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>60.019287</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1140.618</float>
+      </void>
+      <void property="y">
+       <float>1643.6993</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall14">
+     <void property="end">
+      <void property="x">
+       <float>736.55853</float>
+      </void>
+      <void property="y">
+       <float>1621.9023</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>48.803223</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>736.55853</float>
+      </void>
+      <void property="y">
+       <float>1573.0991</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall15">
+     <void property="end">
+      <void property="x">
+       <float>1070.1953</float>
+      </void>
+      <void property="y">
+       <float>1621.8787</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>47.502686</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1070.1953</float>
+      </void>
+      <void property="y">
+       <float>1574.376</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall16">
+     <void property="end">
+      <void property="x">
+       <float>4264.3813</float>
+      </void>
+      <void property="y">
+       <float>374.3769</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>147.50371</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>4264.3813</float>
+      </void>
+      <void property="y">
+       <float>226.87318</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall17">
+     <void property="end">
+      <void property="x">
+       <float>4307.49</float>
+      </void>
+      <void property="y">
+       <float>371.87897</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>143.75824</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>4307.49</float>
+      </void>
+      <void property="y">
+       <float>228.12073</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall18">
+     <void property="end">
+      <void property="x">
+       <float>3176.9128</float>
+      </void>
+      <void property="y">
+       <float>911.70166</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>222.60889</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2954.304</float>
+      </void>
+      <void property="y">
+       <float>911.70166</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall19">
+     <void property="end">
+      <void property="x">
+       <float>1185.4191</float>
+      </void>
+      <void property="y">
+       <float>898.1229</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>42.5</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1185.4191</float>
+      </void>
+      <void property="y">
+       <float>855.6229</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall20">
+     <void property="end">
+      <void property="x">
+       <float>752.5205</float>
+      </void>
+      <void property="y">
+       <float>891.89966</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>38.790955</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>752.5205</float>
+      </void>
+      <void property="y">
+       <float>853.1087</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall21">
+     <void property="end">
+      <void property="x">
+       <float>143.13046</float>
+      </void>
+      <void property="y">
+       <float>1245.819</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>41.26162</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>101.86884</float>
+      </void>
+      <void property="y">
+       <float>1245.819</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall22">
+     <void property="end">
+      <void property="x">
+       <float>141.90999</float>
+      </void>
+      <void property="y">
+       <float>1196.5662</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>40.068092</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>101.841896</float>
+      </void>
+      <void property="y">
+       <float>1196.5662</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall23">
+     <void property="end">
+      <void property="x">
+       <float>1107.6827</float>
+      </void>
+      <void property="y">
+       <float>2184.377</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>500.00403</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1107.6827</float>
+      </void>
+      <void property="y">
+       <float>1684.3729</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall24">
+     <void property="end">
+      <void property="x">
+       <float>1135.903</float>
+      </void>
+      <void property="y">
+       <float>1634.0201</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>64.05522</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1074.7279</float>
+      </void>
+      <void property="y">
+       <float>1653.0118</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall25">
+     <void property="end">
+      <void property="x">
+       <float>1133.7472</float>
+      </void>
+      <void property="y">
+       <float>1674.9025</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>63.23724</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1073.4392</float>
+      </void>
+      <void property="y">
+       <float>1655.8789</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall26">
+     <void property="end">
+      <void property="x">
+       <float>781.87555</float>
+      </void>
+      <void property="y">
+       <float>1623.5448</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>43.750183</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>738.12537</float>
+      </void>
+      <void property="y">
+       <float>1623.5448</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall27">
+     <void property="end">
+      <void property="x">
+       <float>1751.875</float>
+      </void>
+      <void property="y">
+       <float>860.2784</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>448.75</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1303.125</float>
+      </void>
+      <void property="y">
+       <float>860.2784</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall28">
+     <void property="end">
+      <void property="x">
+       <float>2564.3745</float>
+      </void>
+      <void property="y">
+       <float>863.43774</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>441.24902</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2123.1255</float>
+      </void>
+      <void property="y">
+       <float>863.43774</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall29">
+     <void property="end">
+      <void property="x">
+       <float>3296.0637</float>
+      </void>
+      <void property="y">
+       <float>903.1305</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>170.01007</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3296.0637</float>
+      </void>
+      <void property="y">
+       <float>733.1204</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall30">
+     <void property="end">
+      <void property="x">
+       <float>1949.3772</float>
+      </void>
+      <void property="y">
+       <float>863.365</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>143.75513</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1805.6221</float>
+      </void>
+      <void property="y">
+       <float>863.365</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall31">
+     <void property="end">
+      <void property="x">
+       <float>833.6019</float>
+      </void>
+      <void property="y">
+       <float>893.13153</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>62.511414</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>833.6019</float>
+      </void>
+      <void property="y">
+       <float>830.6201</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall32">
+     <void property="end">
+      <void property="x">
+       <float>1184.3875</float>
+      </void>
+      <void property="y">
+       <float>854.5039</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>60.02527</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1124.3622</float>
+      </void>
+      <void property="y">
+       <float>854.5039</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall33">
+     <void property="end">
+      <void property="x">
+       <float>2074.4175</float>
+      </void>
+      <void property="y">
+       <float>863.6493</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>38.825684</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2035.5918</float>
+      </void>
+      <void property="y">
+       <float>863.6493</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall34">
+     <void property="end">
+      <void property="x">
+       <float>1867.3275</float>
+      </void>
+      <void property="y">
+       <float>823.6618</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>35.668945</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1831.6586</float>
+      </void>
+      <void property="y">
+       <float>823.6618</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall35">
+     <void property="end">
+      <void property="x">
+       <float>2074.4207</float>
+      </void>
+      <void property="y">
+       <float>726.62714</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>37.588867</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2036.8318</float>
+      </void>
+      <void property="y">
+       <float>726.62714</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall36">
+     <void property="end">
+      <void property="x">
+       <float>2074.4143</float>
+      </void>
+      <void property="y">
+       <float>689.6975</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>36.32849</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2038.0858</float>
+      </void>
+      <void property="y">
+       <float>689.6975</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall37">
+     <void property="end">
+      <void property="x">
+       <float>669.45636</float>
+      </void>
+      <void property="y">
+       <float>935.6258</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>95.00079</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>669.45636</float>
+      </void>
+      <void property="y">
+       <float>840.625</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall38">
+     <void property="end">
+      <void property="x">
+       <float>1928.4071</float>
+      </void>
+      <void property="y">
+       <float>957.04034</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>60.161255</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1928.4071</float>
+      </void>
+      <void property="y">
+       <float>896.8791</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall39">
+     <void property="end">
+      <void property="x">
+       <float>1650.5371</float>
+      </void>
+      <void property="y">
+       <float>952.93896</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>58.568848</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1650.5371</float>
+      </void>
+      <void property="y">
+       <float>894.3701</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall40">
+     <void property="end">
+      <void property="x">
+       <float>1807.0829</float>
+      </void>
+      <void property="y">
+       <float>955.8742</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>57.927307</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1807.0829</float>
+      </void>
+      <void property="y">
+       <float>897.9469</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall41">
+     <void property="end">
+      <void property="x">
+       <float>1528.9277</float>
+      </void>
+      <void property="y">
+       <float>952.9988</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>56.07257</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1528.9277</float>
+      </void>
+      <void property="y">
+       <float>896.9262</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall42">
+     <void property="end">
+      <void property="x">
+       <float>2629.2039</float>
+      </void>
+      <void property="y">
+       <float>909.37866</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>42.502563</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2629.2039</float>
+      </void>
+      <void property="y">
+       <float>866.8761</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall43">
+     <void property="end">
+      <void property="x">
+       <float>3830.3215</float>
+      </void>
+      <void property="y">
+       <float>909.39</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>42.51062</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3830.3215</float>
+      </void>
+      <void property="y">
+       <float>866.8794</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall44">
+     <void property="end">
+      <void property="x">
+       <float>3178.6057</float>
+      </void>
+      <void property="y">
+       <float>908.1259</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>38.75891</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3178.6057</float>
+      </void>
+      <void property="y">
+       <float>869.367</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall45">
+     <void property="end">
+      <void property="x">
+       <float>2564.464</float>
+      </void>
+      <void property="y">
+       <float>903.1237</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>37.50067</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2564.464</float>
+      </void>
+      <void property="y">
+       <float>865.62305</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall46">
+     <void property="end">
+      <void property="x">
+       <float>2035.1727</float>
+      </void>
+      <void property="y">
+       <float>903.13367</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>36.259888</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2035.1727</float>
+      </void>
+      <void property="y">
+       <float>866.8738</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall47">
+     <void property="end">
+      <void property="x">
+       <float>779.3786</float>
+      </void>
+      <void property="y">
+       <float>1520.3555</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>107.50659</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>671.872</float>
+      </void>
+      <void property="y">
+       <float>1520.3555</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall48">
+     <void property="end">
+      <void property="x">
+       <float>720.04193</float>
+      </void>
+      <void property="y">
+       <float>800.61847</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>57.4823</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>720.04193</float>
+      </void>
+      <void property="y">
+       <float>743.13617</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall49">
+     <void property="end">
+      <void property="x">
+       <float>731.3109</float>
+      </void>
+      <void property="y">
+       <float>809.62244</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>51.371635</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>713.8793</float>
+      </void>
+      <void property="y">
+       <float>857.94617</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall50">
+     <void property="end">
+      <void property="x">
+       <float>3931.873</float>
+      </void>
+      <void property="y">
+       <float>213.35954</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>38.751465</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3893.1216</float>
+      </void>
+      <void property="y">
+       <float>213.35954</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall51">
+     <void property="end">
+      <void property="x">
+       <float>255.62315</float>
+      </void>
+      <void property="y">
+       <float>890.60724</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>153.74991</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>101.873245</float>
+      </void>
+      <void property="y">
+       <float>890.60724</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall52">
+     <void property="end">
+      <void property="x">
+       <float>450.6225</float>
+      </void>
+      <void property="y">
+       <float>890.97766</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>136.25165</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>314.37085</float>
+      </void>
+      <void property="y">
+       <float>890.97766</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall53">
+     <void property="end">
+      <void property="x">
+       <float>619.37805</float>
+      </void>
+      <void property="y">
+       <float>893.04175</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>125.01358</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>494.36447</float>
+      </void>
+      <void property="y">
+       <float>893.04175</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall54">
+     <void property="end">
+      <void property="x">
+       <float>3765.5496</float>
+      </void>
+      <void property="y">
+       <float>909.3758</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>36.250793</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3765.5496</float>
+      </void>
+      <void property="y">
+       <float>873.125</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall55">
+     <void property="end">
+      <void property="x">
+       <float>3178.5525</float>
+      </void>
+      <void property="y">
+       <float>735.62427</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>41.25</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3178.5525</float>
+      </void>
+      <void property="y">
+       <float>694.37427</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall56">
+     <void property="end">
+      <void property="x">
+       <float>2627.2292</float>
+      </void>
+      <void property="y">
+       <float>735.6123</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>39.999207</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2627.2292</float>
+      </void>
+      <void property="y">
+       <float>695.6131</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall57">
+     <void property="end">
+      <void property="x">
+       <float>3838.344</float>
+      </void>
+      <void property="y">
+       <float>738.1417</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>40.015198</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3838.344</float>
+      </void>
+      <void property="y">
+       <float>698.1265</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall58">
+     <void property="end">
+      <void property="x">
+       <float>1081.321</float>
+      </void>
+      <void property="y">
+       <float>898.1167</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>447.50165</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1081.321</float>
+      </void>
+      <void property="y">
+       <float>450.61505</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall59">
+     <void property="end">
+      <void property="x">
+       <float>1105.6251</float>
+      </void>
+      <void property="y">
+       <float>1684.3599</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>36.264282</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1069.3608</float>
+      </void>
+      <void property="y">
+       <float>1684.3599</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall60">
+     <void property="end">
+      <void property="x">
+       <float>831.8876</float>
+      </void>
+      <void property="y">
+       <float>894.09283</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>78.75403</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>753.13354</float>
+      </void>
+      <void property="y">
+       <float>894.09283</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall61">
+     <void property="end">
+      <void property="x">
+       <float>3768.1257</float>
+      </void>
+      <void property="y">
+       <float>703.4845</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>437.5017</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3330.624</float>
+      </void>
+      <void property="y">
+       <float>703.4845</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall62">
+     <void property="end">
+      <void property="x">
+       <float>3295.6414</float>
+      </void>
+      <void property="y">
+       <float>703.3953</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>51.283936</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3244.3574</float>
+      </void>
+      <void property="y">
+       <float>703.3953</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall63">
+     <void property="end">
+      <void property="x">
+       <float>2564.5457</float>
+      </void>
+      <void property="y">
+       <float>725.63184</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>36.249695</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2564.5457</float>
+      </void>
+      <void property="y">
+       <float>689.38214</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall64">
+     <void property="end">
+      <void property="x">
+       <float>1234.0817</float>
+      </void>
+      <void property="y">
+       <float>870.3409</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>60.102726</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1216.9696</float>
+      </void>
+      <void property="y">
+       <float>812.72565</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall65">
+     <void property="end">
+      <void property="x">
+       <float>1226.3583</float>
+      </void>
+      <void property="y">
+       <float>805.6469</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>56.303345</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1226.3583</float>
+      </void>
+      <void property="y">
+       <float>749.34357</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall66">
+     <void property="end">
+      <void property="x">
+       <float>1291.8971</float>
+      </void>
+      <void property="y">
+       <float>1183.6333</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>43.782104</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1248.115</float>
+      </void>
+      <void property="y">
+       <float>1183.6333</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall67">
+     <void property="end">
+      <void property="x">
+       <float>526.877</float>
+      </void>
+      <void property="y">
+       <float>1239.2202</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>118.75101</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>408.126</float>
+      </void>
+      <void property="y">
+       <float>1239.2202</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall68">
+     <void property="end">
+      <void property="x">
+       <float>451.91803</float>
+      </void>
+      <void property="y">
+       <float>1202.8137</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>36.318024</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>415.6</float>
+      </void>
+      <void property="y">
+       <float>1202.8137</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall69">
+     <void property="end">
+      <void property="x">
+       <float>373.1252</float>
+      </void>
+      <void property="y">
+       <float>1374.3683</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>190.0</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>183.12521</float>
+      </void>
+      <void property="y">
+       <float>1374.3683</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall70">
+     <void property="end">
+      <void property="x">
+       <float>345.62592</float>
+      </void>
+      <void property="y">
+       <float>1250.2776</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>137.49997</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>208.12595</float>
+      </void>
+      <void property="y">
+       <float>1250.2776</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall71">
+     <void property="end">
+      <void property="x">
+       <float>248.79424</float>
+      </void>
+      <void property="y">
+       <float>2135.7122</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>53.685192</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>220.00862</float>
+      </void>
+      <void property="y">
+       <float>2181.0276</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall72">
+     <void property="end">
+      <void property="x">
+       <float>255.6535</float>
+      </void>
+      <void property="y">
+       <float>1191.5833</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>47.546097</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>208.1074</float>
+      </void>
+      <void property="y">
+       <float>1191.5833</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall73">
+     <void property="end">
+      <void property="x">
+       <float>2479.5398</float>
+      </void>
+      <void property="y">
+       <float>465.4831</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>35.201416</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2444.3384</float>
+      </void>
+      <void property="y">
+       <float>465.4831</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall74">
+     <void property="end">
+      <void property="x">
+       <float>3329.3997</float>
+      </void>
+      <void property="y">
+       <float>870.6248</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>136.25</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3329.3997</float>
+      </void>
+      <void property="y">
+       <float>734.3748</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall75">
+     <void property="end">
+      <void property="x">
+       <float>2722.4758</float>
+      </void>
+      <void property="y">
+       <float>866.8744</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>128.75</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2722.4758</float>
+      </void>
+      <void property="y">
+       <float>738.1244</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall76">
+     <void property="end">
+      <void property="x">
+       <float>3892.1875</float>
+      </void>
+      <void property="y">
+       <float>866.8708</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>124.99982</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3892.1875</float>
+      </void>
+      <void property="y">
+       <float>741.871</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall77">
+     <void property="end">
+      <void property="x">
+       <float>1979.3783</float>
+      </void>
+      <void property="y">
+       <float>483.42987</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>56.258423</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1923.1199</float>
+      </void>
+      <void property="y">
+       <float>483.42987</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall78">
+     <void property="end">
+      <void property="x">
+       <float>2325.5842</float>
+      </void>
+      <void property="y">
+       <float>481.5708</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>36.290283</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2289.294</float>
+      </void>
+      <void property="y">
+       <float>481.5708</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall79">
+     <void property="end">
+      <void property="x">
+       <float>1076.3497</float>
+      </void>
+      <void property="y">
+       <float>444.37573</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>170.00189</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1076.3497</float>
+      </void>
+      <void property="y">
+       <float>274.37384</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall80">
+     <void property="end">
+      <void property="x">
+       <float>670.6232</float>
+      </void>
+      <void property="y">
+       <float>1358.3799</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>50.0</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>620.6232</float>
+      </void>
+      <void property="y">
+       <float>1358.3799</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall81">
+     <void property="end">
+      <void property="x">
+       <float>702.69226</float>
+      </void>
+      <void property="y">
+       <float>853.2666</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>47.822235</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>687.8183</float>
+      </void>
+      <void property="y">
+       <float>807.8163</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall82">
+     <void property="end">
+      <void property="x">
+       <float>3890.649</float>
+      </void>
+      <void property="y">
+       <float>740.44507</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>51.293945</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3839.355</float>
+      </void>
+      <void property="y">
+       <float>740.44507</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall83">
+     <void property="end">
+      <void property="x">
+       <float>518.24457</float>
+      </void>
+      <void property="y">
+       <float>1323.125</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>82.5011</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>518.24457</float>
+      </void>
+      <void property="y">
+       <float>1240.6239</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall84">
+     <void property="end">
+      <void property="x">
+       <float>508.12106</float>
+      </void>
+      <void property="y">
+       <float>601.77374</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>48.74942</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>459.37164</float>
+      </void>
+      <void property="y">
+       <float>601.77374</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall85">
+     <void property="end">
+      <void property="x">
+       <float>499.4567</float>
+      </void>
+      <void property="y">
+       <float>1929.3976</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>37.500458</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>461.95624</float>
+      </void>
+      <void property="y">
+       <float>1929.3976</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall86">
+     <void property="end">
+      <void property="x">
+       <float>664.35944</float>
+      </void>
+      <void property="y">
+       <float>1246.4047</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>134.97107</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>529.38837</float>
+      </void>
+      <void property="y">
+       <float>1246.4047</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall87">
+     <void property="end">
+      <void property="x">
+       <float>664.4198</float>
+      </void>
+      <void property="y">
+       <float>1321.5944</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>135.06561</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>529.3542</float>
+      </void>
+      <void property="y">
+       <float>1321.5944</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall88">
+     <void property="end">
+      <void property="x">
+       <float>629.3735</float>
+      </void>
+      <void property="y">
+       <float>1340.877</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>66.26288</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>563.1106</float>
+      </void>
+      <void property="y">
+       <float>1340.877</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall89">
+     <void property="end">
+      <void property="x">
+       <float>665.6287</float>
+      </void>
+      <void property="y">
+       <float>1163.0509</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>45.005066</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>620.62366</float>
+      </void>
+      <void property="y">
+       <float>1163.0509</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall90">
+     <void property="end">
+      <void property="x">
+       <float>669.3795</float>
+      </void>
+      <void property="y">
+       <float>1092.5004</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>46.25531</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>623.1242</float>
+      </void>
+      <void property="y">
+       <float>1092.5004</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall91">
+     <void property="end">
+      <void property="x">
+       <float>668.13306</float>
+      </void>
+      <void property="y">
+       <float>1005.09894</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>45.0094</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>623.12366</float>
+      </void>
+      <void property="y">
+       <float>1005.09894</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall92">
+     <void property="end">
+      <void property="x">
+       <float>668.13226</float>
+      </void>
+      <void property="y">
+       <float>936.4283</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>43.758972</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>624.3733</float>
+      </void>
+      <void property="y">
+       <float>936.4283</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall93">
+     <void property="end">
+      <void property="x">
+       <float>1613.127</float>
+      </void>
+      <void property="y">
+       <float>1006.1267</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>60.002808</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1553.1241</float>
+      </void>
+      <void property="y">
+       <float>1006.1267</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall94">
+     <void property="end">
+      <void property="x">
+       <float>2446.8833</float>
+      </void>
+      <void property="y">
+       <float>1010.997</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>60.023193</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2386.86</float>
+      </void>
+      <void property="y">
+       <float>1010.997</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall95">
+     <void property="end">
+      <void property="x">
+       <float>669.4759</float>
+      </void>
+      <void property="y">
+       <float>1091.8739</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>85.0</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>669.4759</float>
+      </void>
+      <void property="y">
+       <float>1006.8739</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall96">
+     <void property="end">
+      <void property="x">
+       <float>2953.3887</float>
+      </void>
+      <void property="y">
+       <float>979.3861</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>72.50989</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2953.3887</float>
+      </void>
+      <void property="y">
+       <float>906.8762</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall97">
+     <void property="end">
+      <void property="x">
+       <float>2809.391</float>
+      </void>
+      <void property="y">
+       <float>1013.74774</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>56.278076</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2753.113</float>
+      </void>
+      <void property="y">
+       <float>1013.74774</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall98">
+     <void property="end">
+      <void property="x">
+       <float>371.87982</float>
+      </void>
+      <void property="y">
+       <float>1411.47</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>105.007996</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>266.87183</float>
+      </void>
+      <void property="y">
+       <float>1411.47</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall99">
+     <void property="end">
+      <void property="x">
+       <float>221.9214</float>
+      </void>
+      <void property="y">
+       <float>1411.6439</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>38.84015</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>183.08125</float>
+      </void>
+      <void property="y">
+       <float>1411.6439</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall100">
+     <void property="end">
+      <void property="x">
+       <float>256.06717</float>
+      </void>
+      <void property="y">
+       <float>807.81</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>49.55251</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>227.31615</float>
+      </void>
+      <void property="y">
+       <float>767.45123</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall101">
+     <void property="end">
+      <void property="x">
+       <float>229.1618</float>
+      </void>
+      <void property="y">
+       <float>1080.2074</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>46.074043</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>184.52827</float>
+      </void>
+      <void property="y">
+       <float>1068.7765</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall102">
+     <void property="end">
+      <void property="x">
+       <float>525.5393</float>
+      </void>
+      <void property="y">
+       <float>1323.1251</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>82.50354</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>525.5393</float>
+      </void>
+      <void property="y">
+       <float>1240.6216</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall103">
+     <void property="end">
+      <void property="x">
+       <float>663.5036</float>
+      </void>
+      <void property="y">
+       <float>1319.3724</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>71.246826</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>663.5036</float>
+      </void>
+      <void property="y">
+       <float>1248.1256</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall104">
+     <void property="end">
+      <void property="x">
+       <float>408.07098</float>
+      </void>
+      <void property="y">
+       <float>1299.4672</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>58.843628</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>408.07098</float>
+      </void>
+      <void property="y">
+       <float>1240.6235</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall105">
+     <void property="end">
+      <void property="x">
+       <float>208.23474</float>
+      </void>
+      <void property="y">
+       <float>1248.1326</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>53.757202</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>208.23474</float>
+      </void>
+      <void property="y">
+       <float>1194.3754</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall106">
+     <void property="end">
+      <void property="x">
+       <float>143.56546</float>
+      </void>
+      <void property="y">
+       <float>1244.3727</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>46.251343</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>143.56546</float>
+      </void>
+      <void property="y">
+       <float>1198.1213</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall107">
+     <void property="end">
+      <void property="x">
+       <float>996.38776</float>
+      </void>
+      <void property="y">
+       <float>1735.6455</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>41.26526</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>996.38776</float>
+      </void>
+      <void property="y">
+       <float>1694.3802</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall108">
+     <void property="end">
+      <void property="x">
+       <float>871.47974</float>
+      </void>
+      <void property="y">
+       <float>1739.379</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>41.249878</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>871.47974</float>
+      </void>
+      <void property="y">
+       <float>1698.1292</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall109">
+     <void property="end">
+      <void property="x">
+       <float>513.14667</float>
+      </void>
+      <void property="y">
+       <float>1984.0756</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>54.983246</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>458.16342</float>
+      </void>
+      <void property="y">
+       <float>1984.0756</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall110">
+     <void property="end">
+      <void property="x">
+       <float>1337.4012</float>
+      </void>
+      <void property="y">
+       <float>1273.1243</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>59.99878</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1337.4012</float>
+      </void>
+      <void property="y">
+       <float>1213.1255</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall111">
+     <void property="end">
+      <void property="x">
+       <float>2569.4062</float>
+      </void>
+      <void property="y">
+       <float>1044.3812</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>46.267944</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2569.4062</float>
+      </void>
+      <void property="y">
+       <float>998.1133</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall112">
+     <void property="end">
+      <void property="x">
+       <float>3104.4277</float>
+      </void>
+      <void property="y">
+       <float>985.62866</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>72.5036</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3104.4277</float>
+      </void>
+      <void property="y">
+       <float>913.12506</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall113">
+     <void property="end">
+      <void property="x">
+       <float>1977.6189</float>
+      </void>
+      <void property="y">
+       <float>814.35724</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>57.454895</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1977.6189</float>
+      </void>
+      <void property="y">
+       <float>756.90234</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall114">
+     <void property="end">
+      <void property="x">
+       <float>3806.896</float>
+      </void>
+      <void property="y">
+       <float>1018.81445</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>60.0354</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3746.8606</float>
+      </void>
+      <void property="y">
+       <float>1018.81445</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall115">
+     <void property="end">
+      <void property="x">
+       <float>2613.1223</float>
+      </void>
+      <void property="y">
+       <float>1045.6428</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>48.766724</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2613.1223</float>
+      </void>
+      <void property="y">
+       <float>996.8761</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall116">
+     <void property="end">
+      <void property="x">
+       <float>2687.7458</float>
+      </void>
+      <void property="y">
+       <float>1041.8971</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>45.028015</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2687.7458</float>
+      </void>
+      <void property="y">
+       <float>996.8691</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall117">
+     <void property="end">
+      <void property="x">
+       <float>3817.782</float>
+      </void>
+      <void property="y">
+       <float>828.1366</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>61.280457</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3817.782</float>
+      </void>
+      <void property="y">
+       <float>766.85614</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall118">
+     <void property="end">
+      <void property="x">
+       <float>3868.7764</float>
+      </void>
+      <void property="y">
+       <float>1027.4911</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>58.907047</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3812.6843</float>
+      </void>
+      <void property="y">
+       <float>1009.4988</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall119">
+     <void property="end">
+      <void property="x">
+       <float>3869.0327</float>
+      </void>
+      <void property="y">
+       <float>1030.7612</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>58.541775</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3813.073</float>
+      </void>
+      <void property="y">
+       <float>1047.9557</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall120">
+     <void property="end">
+      <void property="x">
+       <float>3797.58</float>
+      </void>
+      <void property="y">
+       <float>825.644</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>56.286804</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3797.58</float>
+      </void>
+      <void property="y">
+       <float>769.3572</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall121">
+     <void property="end">
+      <void property="x">
+       <float>1999.0023</float>
+      </void>
+      <void property="y">
+       <float>815.6654</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>58.817932</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1999.0023</float>
+      </void>
+      <void property="y">
+       <float>756.8475</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall122">
+     <void property="end">
+      <void property="x">
+       <float>2590.4373</float>
+      </void>
+      <void property="y">
+       <float>819.4069</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>60.065796</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2590.4373</float>
+      </void>
+      <void property="y">
+       <float>759.3411</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall123">
+     <void property="end">
+      <void property="x">
+       <float>2590.4373</float>
+      </void>
+      <void property="y">
+       <float>819.4069</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>60.065796</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2590.4373</float>
+      </void>
+      <void property="y">
+       <float>759.3411</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall124">
+     <void property="end">
+      <void property="x">
+       <float>2611.143</float>
+      </void>
+      <void property="y">
+       <float>818.142</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>58.75641</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>2611.143</float>
+      </void>
+      <void property="y">
+       <float>759.3856</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall125">
+     <void property="end">
+      <void property="x">
+       <float>3233.9365</float>
+      </void>
+      <void property="y">
+       <float>824.3971</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>60.04492</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3233.9365</float>
+      </void>
+      <void property="y">
+       <float>764.3522</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall126">
+     <void property="end">
+      <void property="x">
+       <float>3220.279</float>
+      </void>
+      <void property="y">
+       <float>883.7544</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>59.7513</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3203.738</float>
+      </void>
+      <void property="y">
+       <float>826.33826</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall127">
+     <void property="end">
+      <void property="x">
+       <float>3213.7793</float>
+      </void>
+      <void property="y">
+       <float>821.8927</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>58.78058</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>3213.7793</float>
+      </void>
+      <void property="y">
+       <float>763.1121</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall128">
+     <void property="end">
+      <void property="x">
+       <float>1247.8848</float>
+      </void>
+      <void property="y">
+       <float>808.1266</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>58.75128</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1247.8848</float>
+      </void>
+      <void property="y">
+       <float>749.3753</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall129">
+     <void property="end">
+      <void property="x">
+       <float>1430.6394</float>
+      </void>
+      <void property="y">
+       <float>1981.2012</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>42.534424</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1388.105</float>
+      </void>
+      <void property="y">
+       <float>1981.2012</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall130">
+     <void property="end">
+      <void property="x">
+       <float>937.67505</float>
+      </void>
+      <void property="y">
+       <float>1833.1492</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>60.019653</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>937.67505</float>
+      </void>
+      <void property="y">
+       <float>1773.1295</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall131">
+     <void property="end">
+      <void property="x">
+       <float>948.1614</float>
+      </void>
+      <void property="y">
+       <float>1766.4215</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>55.301853</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>931.14795</float>
+      </void>
+      <void property="y">
+       <float>1713.8018</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall132">
+     <void property="end">
+      <void property="x">
+       <float>4211.957</float>
+      </void>
+      <void property="y">
+       <float>775.5408</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>54.20846</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>4171.1675</float>
+      </void>
+      <void property="y">
+       <float>811.2447</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall133">
+     <void property="end">
+      <void property="x">
+       <float>988.1291</float>
+      </void>
+      <void property="y">
+       <float>1995.4489</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>39.978333</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>948.15076</float>
+      </void>
+      <void property="y">
+       <float>1995.4489</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall134">
+     <void property="end">
+      <void property="x">
+       <float>4146.5103</float>
+      </void>
+      <void property="y">
+       <float>241.82439</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>35.957596</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>4146.5103</float>
+      </void>
+      <void property="y">
+       <float>205.86679</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall135">
+     <void property="end">
+      <void property="x">
+       <float>1533.0894</float>
+      </void>
+      <void property="y">
+       <float>546.7516</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>48.740723</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1484.3486</float>
+      </void>
+      <void property="y">
+       <float>546.7516</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall136">
+     <void property="end">
+      <void property="x">
+       <float>1347.5227</float>
+      </void>
+      <void property="y">
+       <float>1207.0792</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>54.155315</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1330.1304</float>
+      </void>
+      <void property="y">
+       <float>1155.7927</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall137">
+     <void property="end">
+      <void property="x">
+       <float>1503.1451</float>
+      </void>
+      <void property="y">
+       <float>1407.7472</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>35.033447</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>1468.1117</float>
+      </void>
+      <void property="y">
+       <float>1407.7472</float>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgprocessor.model.Wall" id="Wall138">
+     <void property="end">
+      <void property="x">
+       <float>4177.9185</float>
+      </void>
+      <void property="y">
+       <float>203.6354</float>
+      </void>
+     </void>
+     <void property="length">
+      <float>39.46875</float>
+     </void>
+     <void property="start">
+      <void property="x">
+       <float>4167.515</float>
+      </void>
+      <void property="y">
+       <float>241.7084</float>
+      </void>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>
