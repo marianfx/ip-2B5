@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="mainFrame" prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.imgprocessor.controller.MainViewController">
+    <children>
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+
+      <SplitPane fx:id="splitPane" dividerPositions="0.20" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0">
+
+               <children>
+
+                  <Label layoutX="7.0" layoutY="15.0" text="Image Processor" textFill="#1a478a">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+
+                  <Label layoutX="5.0" layoutY="51.0" text="Image:" />
+                  <TextField id="textField_imagePath" fx:id="textImage" layoutX="7.0" layoutY="75.0" AnchorPane.rightAnchor="5.0" AnchorPane.leftAnchor="5.0"/>
+
+                  <Button id="buttonBrowse" fx:id="buttonLoad" layoutY="110.0" AnchorPane.leftAnchor="5.0" prefWidth="60" mnemonicParsing="false" onAction="#buttonLoadOnClick" text="Load" />
+                  <Button id="button_LoadImage" fx:id="buttonProcess" layoutY="110.0" AnchorPane.leftAnchor="65.0" prefWidth="80" mnemonicParsing="false" onAction="#buttonProcessOnClick" text="Process" />
+
+
+                  <Label layoutX="5.0" layoutY="150.0" text="Template folder:" />
+                  <TextField id="textField_templateFolder" fx:id="textTemplate" layoutX="7.0" layoutY="175.0" AnchorPane.rightAnchor="5.0" AnchorPane.leftAnchor="5.0"/>
+
+                  <Label AnchorPane.leftAnchor="5.0" layoutY="220.0" text="Progress:" />
+                  <ProgressBar fx:id="progressBar" layoutY="245.0" prefHeight="25" progress="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.leftAnchor="5.0" />
+
+
+                  <Label layoutX="5.0" layoutY="285.0" text="Min wall width:" />
+                  <TextField fx:id="textMinWidth" layoutX="7.0" layoutY="300.0" AnchorPane.rightAnchor="5.0" AnchorPane.leftAnchor="5.0"/>
+
+
+                  <Label layoutX="5.0" layoutY="325.0" text="Max wall width:" />
+                  <TextField fx:id="textMaxWidth" layoutX="7.0" layoutY="345.0" AnchorPane.rightAnchor="5.0" AnchorPane.leftAnchor="5.0"/>
+
+
+                  <CheckBox fx:id="onlyLinesCK" text="Only walls." layoutX="7.0" layoutY="380.0" />
+               </children>
+
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0">
+               <children>
+
+                  <Separator layoutX="-5.0" layoutY="209.0" prefHeight="3.0" prefWidth="339.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="220.0" />
+
+                  <AnchorPane fx:id="imagePanel" AnchorPane.topAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.bottomAnchor="300.0">
+                 	 <ImageView fx:id="imageView" preserveRatio="true" />
+                  </AnchorPane>
+
+                  <Label text="Details:" AnchorPane.leftAnchor="5.0" AnchorPane.bottomAnchor="195.0" />
+                  <TextArea fx:id="textDetails" prefHeight="190" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0"/>
+
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+
+    </children>
+</AnchorPane>
