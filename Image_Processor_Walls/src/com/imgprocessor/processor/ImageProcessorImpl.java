@@ -11,7 +11,6 @@ import com.imgprocessor.controller.ImageUpdateAction;
 import com.imgprocessor.controller.ImageUpdateListener;
 import com.imgprocessor.controller.ProgressChangedAction;
 import com.imgprocessor.controller.ProgressChangedListener;
-import com.imgprocessor.model.ImageProcessedRepresentation;
 import com.imgprocessor.model.Line;
 import com.imgprocessor.model.Representation;
 import com.imgprocessor.opencvtest.HoughLineDetection;
@@ -31,8 +30,6 @@ public class ImageProcessorImpl implements ImageProcessor {
     
     private ImagePreProcessor imagePreProcessor;
     private ExtendedImage extendedImage;
-    
-    private ImageProcessedRepresentation imageProcessedRepresentation;
     
     private Vector<DetailsAppendListener> detailsAppendListeners;
     private Vector<ProgressChangedListener> progressChangedListeners;
@@ -123,18 +120,6 @@ public class ImageProcessorImpl implements ImageProcessor {
 		
     }
 
-    /**
-     * Procesing image and get it's representation.
-     * @return the imageProcessedRepresentation
-     * @throws com.imgproctempl.processor.ValidatingException
-     * @throws com.imgproctempl.processor.TruncatingException
-     * @throws com.imgproctempl.processor.ProcessingException
-     */
-    @Override
-    public ImageProcessedRepresentation getImageProcessedRepresentation() throws ValidatingException, TruncatingException, ProcessingException {
-        process();
-        return imageProcessedRepresentation;
-    }
     
     public void updateImage(BufferedImage img)
     {

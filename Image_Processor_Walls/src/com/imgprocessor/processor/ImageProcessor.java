@@ -7,7 +7,6 @@ package com.imgprocessor.processor;
 
 import com.imgprocessor.controller.DetailsAppendListener;
 import com.imgprocessor.controller.ProgressChangedListener;
-import com.imgprocessor.model.ImageProcessedRepresentation;
 
 /**
  *
@@ -16,9 +15,6 @@ import com.imgprocessor.model.ImageProcessedRepresentation;
 public interface ImageProcessor {
     
    void process() throws ValidatingException, TruncatingException, ProcessingException;
-   
-   ImageProcessedRepresentation getImageProcessedRepresentation() 
-		   throws ValidatingException, TruncatingException, ProcessingException;
    
    public ExtendedImage getExtendedImage();
    

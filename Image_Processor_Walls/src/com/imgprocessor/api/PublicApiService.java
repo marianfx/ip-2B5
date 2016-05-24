@@ -9,10 +9,6 @@ import com.imgprocessor.api.ExternalImageApiImpl;
 import com.imgprocessor.api.ImageApi;
 import com.imgprocessor.api.InternalProcessorNotFound;
 import com.imgprocessor.api.NotSupportedFileFormatException;
-import com.imgprocessor.model.ImageProcessedRepresentation;
-import com.imgprocessor.processor.ProcessingException;
-import com.imgprocessor.processor.TruncatingException;
-import com.imgprocessor.processor.ValidatingException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -46,10 +42,6 @@ public class PublicApiService {
         chooseImageApi(imageFilepath);     
     }
     
-    public ImageProcessedRepresentation getResult() throws ValidatingException, TruncatingException, ProcessingException
-    {
-        return imageApi.getImageProcessedRepresentation();
-    }
     
     /**
      * Chooses right API based on the image file path.

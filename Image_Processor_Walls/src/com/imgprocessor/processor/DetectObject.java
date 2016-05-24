@@ -30,12 +30,11 @@ import org.opencv.features2d.Features2d;
 import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 
-import com.imgprocessor.model.Coordinates;
-import com.imgprocessor.model.Door;
-import com.imgprocessor.model.ImageProcessedRepresentation;
+import com.imgmodel.buildingParts.Coordinates;
+import com.imgmodel.buildingParts.Door;
+import com.imgmodel.buildingParts.Stairs;
+import com.imgmodel.buildingParts.Window;
 import com.imgprocessor.model.Line;
-import com.imgprocessor.model.Stairs;
-import com.imgprocessor.model.Window;
 import com.imgprocessor.opencvtest.LineProcessor;
 
 
@@ -284,9 +283,8 @@ public class DetectObject
 	}
 
 
-	public ImageProcessedRepresentation detectAllObject()
+	public void detectAllObject()
 	{
-		ImageProcessedRepresentation output = new ImageProcessedRepresentation();
 		processor.appendDetail("Started detecting objects.");
 
 		String outputImage = TEMPLATE_OUTPUT_PATH;
@@ -378,6 +376,5 @@ public class DetectObject
 			e.printStackTrace();
 		}
 
-		return output;
 	}
 }

@@ -7,7 +7,6 @@ package com.imgprocessor.api;
 
 import com.imgprocessor.controller.DetailsAppendListener;
 import com.imgprocessor.controller.ProgressChangedListener;
-import com.imgprocessor.model.ImageProcessedRepresentation;
 import com.imgprocessor.processor.ImageProcessor;
 import com.imgprocessor.processor.ProcessingException;
 import com.imgprocessor.processor.TruncatingException;
@@ -21,9 +20,6 @@ public interface ImageApi {
     
 	public void processImage(String imageFilePath)
 			throws ValidatingException, TruncatingException, ProcessingException;
-
-    public ImageProcessedRepresentation getImageProcessedRepresentation() 
-    		throws ValidatingException, TruncatingException, ProcessingException;
     
     public ImageProcessor getImageProcessor(); 
     

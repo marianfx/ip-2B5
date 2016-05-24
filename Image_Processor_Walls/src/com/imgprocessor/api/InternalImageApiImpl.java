@@ -8,9 +8,7 @@ package com.imgprocessor.api;
 import com.imgprocessor.api.ImageApi;
 import com.imgprocessor.controller.DetailsAppendListener;
 import com.imgprocessor.controller.ProgressChangedListener;
-import com.imgprocessor.model.ImageProcessedRepresentation;
 import com.imgprocessor.processor.ImageProcessor;
-import com.imgprocessor.processor.ImageState;
 import com.imgprocessor.processor.ProcessingException;
 import com.imgprocessor.processor.TruncatingException;
 import com.imgprocessor.processor.ValidatingException;
@@ -33,28 +31,6 @@ public class InternalImageApiImpl implements ImageApi{
     public void processImage(String imageFilePath) 
     		throws ValidatingException, TruncatingException, ProcessingException {};
     
-    @Override
-    public ImageProcessedRepresentation getImageProcessedRepresentation() 
-    		throws ValidatingException, TruncatingException, ProcessingException {
-    	
-        if(!existsInternalImageProcessorInitialized())
-            return null;
-        
-        if(!isProcessed())
-          internalImageProcessor.process();
-        
-        return internalImageProcessor.getImageProcessedRepresentation();
-    }
-    
-    private boolean existsInternalImageProcessorInitialized()
-    {
-       return internalImageProcessor==null;
-    }
-    
-    private boolean isProcessed()
-    {
-        return internalImageProcessor.getExtendedImage().getImageState()==ImageState.Processed;
-    }
 
     @Override
     public void addProgressChangedListener(ProgressChangedListener listener) {

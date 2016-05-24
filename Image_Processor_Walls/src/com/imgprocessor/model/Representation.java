@@ -3,6 +3,12 @@ package com.imgprocessor.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.imgmodel.buildingParts.Coordinates;
+import com.imgmodel.buildingParts.Door;
+import com.imgmodel.buildingParts.Stairs;
+import com.imgmodel.buildingParts.Wall;
+import com.imgmodel.buildingParts.Window;
+
 public class Representation {
 	
 

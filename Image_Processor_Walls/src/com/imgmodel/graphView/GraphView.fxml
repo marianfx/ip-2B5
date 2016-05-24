@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="819.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.imgmodel.graphView.controller.MainController">
+   <content>
+      <SplitPane dividerPositions="0.5" prefHeight="638.0" prefWidth="816.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="479.0" prefWidth="376.0">
+               <children>
+                  <ListView fx:id="nodeList" layoutY="-3.0" onMouseClicked="#selectNode" prefHeight="383.0" prefWidth="384.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <Button fx:id="showGraph" layoutX="29.0" layoutY="401.0" mnemonicParsing="false" onMouseClicked="#show" prefHeight="25.0" prefWidth="91.0" text="View graph" />
+                  <Button fx:id="addRoom" layoutX="150.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#add" prefHeight="25.0" prefWidth="107.0" text="Add room" />
+                  <TextField fx:id="insert" layoutX="28.0" layoutY="567.0" prefHeight="30.0" prefWidth="232.0" />
+                  <Button fx:id="submit" layoutX="282.0" layoutY="570.0" mnemonicParsing="false" onMouseClicked="#clickSubmit" prefHeight="25.0" prefWidth="104.0" text="Submit" />
+                  <Text fx:id="insertText" layoutX="65.0" layoutY="617.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insert room name" textAlignment="CENTER" wrappingWidth="170.876953125">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="save" layoutX="143.0" layoutY="401.0" mnemonicParsing="false" onMouseClicked="#clickSave" prefHeight="25.0" prefWidth="112.0" text="Save" />
+                  <Button fx:id="load" layoutX="276.0" layoutY="401.0" mnemonicParsing="false" onMouseClicked="#clickLoad" prefHeight="25.0" prefWidth="111.0" text="Load" />
+                  <Button fx:id="delete" layoutX="280.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#deleteNode" prefHeight="25.0" prefWidth="105.0" text="Delete" />
+                  <Button fx:id="merge" layoutX="333.0" layoutY="457.0" mnemonicParsing="false" onMouseClicked="#clickMerge" prefHeight="25.0" prefWidth="52.0" text="Merge" />
+                  <ChoiceBox fx:id="chooseRoomMerge" layoutX="187.0" layoutY="457.0" prefHeight="25.0" prefWidth="134.0" />
+                  <Text fx:id="unableToMerge" fill="RED" layoutX="89.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unable to merge! " textAlignment="CENTER" wrappingWidth="220.13671875">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="split" layoutX="28.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#clickSplit" prefHeight="25.0" prefWidth="101.0" text="Split" />
+                  <TextField fx:id="mergeTextField" layoutX="27.0" layoutY="457.0" prefHeight="25.0" prefWidth="148.0" />
+                  <Label layoutX="29.0" layoutY="487.0" prefHeight="17.0" prefWidth="144.0" text="      New room name" textAlignment="RIGHT" />
+                  <Label layoutX="187.0" layoutY="487.0" prefHeight="17.0" prefWidth="133.0" text="  Select room for merge" textAlignment="RIGHT" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="492.0" prefWidth="326.0">
+               <children>
+                  <ChoiceBox fx:id="chooseComp" layoutX="20.0" layoutY="408.0" prefWidth="150.0" />
+                  <Button fx:id="add" layoutX="185.0" layoutY="408.0" mnemonicParsing="false" onMouseClicked="#addClick" text="Add " />
+                  <TextField fx:id="startX" layoutX="109.0" layoutY="474.0" prefHeight="25.0" prefWidth="53.0" />
+                  <TextField fx:id="startY" layoutX="192.0" layoutY="474.0" prefHeight="25.0" prefWidth="53.0" />
+                  <Label fx:id="startText" layoutX="10.0" layoutY="478.0" text="Starting point" />
+                  <Label fx:id="endText" layoutX="9.0" layoutY="517.0" text="Ending point" />
+                  <TextField fx:id="endY" layoutX="191.0" layoutY="513.0" prefHeight="25.0" prefWidth="53.0" />
+                  <Button fx:id="setEndY" layoutX="258.0" layoutY="513.0" mnemonicParsing="false" onMouseClicked="#clickEndY" text="Set end" visible="false" />
+                  <TextField fx:id="endX" layoutX="108.0" layoutY="513.0" prefHeight="25.0" prefWidth="53.0" />
+                  <TextField fx:id="widthValue" layoutX="289.0" layoutY="474.0" prefHeight="25.0" prefWidth="53.0" />
+                  <Label fx:id="width" layoutX="251.0" layoutY="478.0" text="Width" />
+                  <Button fx:id="setWidth" layoutX="164.0" layoutY="554.0" mnemonicParsing="false" onMouseClicked="#clickWidth" text="Set width" visible="false" />
+                  <Text fx:id="invalidText" fill="RED" layoutX="85.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid value!  Insert new value!" textAlignment="CENTER" wrappingWidth="220.13671875">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <ListView fx:id="partList" layoutX="11.0" layoutY="10.0" onMouseClicked="#selectPart" prefHeight="383.0" prefWidth="374.0" />
+                  <Button fx:id="modify" layoutX="305.0" layoutY="408.0" mnemonicParsing="false" onMouseClicked="#clickModify" text="Modify" />
+                  <Text fx:id="s_x" layoutX="92.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x=" />
+                  <Text fx:id="s_y" layoutX="177.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="y=" />
+                  <Text fx:id="e_y" layoutX="177.0" layoutY="530.0" strokeType="OUTSIDE" strokeWidth="0.0" text="y=" />
+                  <Text fx:id="e_x" layoutX="92.0" layoutY="530.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x=" />
+                  <Text fx:id="c_x" layoutX="92.0" layoutY="509.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x=" />
+                  <Text fx:id="c_y" layoutX="177.0" layoutY="509.0" strokeType="OUTSIDE" strokeWidth="0.0" text="y=" />
+                  <TextField fx:id="cornerX" layoutX="108.0" layoutY="492.0" prefHeight="25.0" prefWidth="53.0" />
+                  <TextField fx:id="cornerY" layoutX="191.0" layoutY="492.0" prefHeight="25.0" prefWidth="53.0" />
+                  <Label fx:id="cornerText" layoutX="9.0" layoutY="496.0" text="Corner" />
+                  <ChoiceBox fx:id="chooseRoom" layoutX="258.0" layoutY="513.0" prefHeight="25.0" prefWidth="125.0" />
+                  <Label fx:id="chooseRoomText" layoutX="256.0" layoutY="550.0" text="Choose connected room" />
+                  <Button fx:id="submitAdd" disable="true" layoutX="147.0" layoutY="590.0" mnemonicParsing="false" onMouseClicked="#clickSubmitAdd" text="Add component" />
+                  <Button fx:id="submitModify" disable="true" layoutX="147.0" layoutY="591.0" mnemonicParsing="false" onMouseClicked="#clickSubmitModify" text="Modify component" visible="false" />
+                  <Button fx:id="deleteComp" layoutX="241.0" layoutY="408.0" mnemonicParsing="false" onMouseClicked="#deleteComp" text="Delete" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </content>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</ScrollPane>

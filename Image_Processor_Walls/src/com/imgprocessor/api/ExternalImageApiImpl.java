@@ -18,7 +18,6 @@ import java.io.FileNotFoundException;
 import com.imgprocessor.api.ImageApi;
 import com.imgprocessor.controller.DetailsAppendListener;
 import com.imgprocessor.controller.ProgressChangedListener;
-import com.imgprocessor.model.ImageProcessedRepresentation;
 
 
 /**
@@ -43,12 +42,6 @@ public class ExternalImageApiImpl implements ImageApi {
     	imageProcessor.process();
     }
     
-    @Override
-    public ImageProcessedRepresentation getImageProcessedRepresentation() 
-    		throws ValidatingException, TruncatingException, ProcessingException {
-    	
-        return imageProcessor.getImageProcessedRepresentation();
-    }
 
     @Override
     public void addProgressChangedListener(ProgressChangedListener listener) {
