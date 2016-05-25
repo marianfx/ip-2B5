@@ -183,7 +183,7 @@ public class DetectObject
 			List <Line> rightLines= lineProc.makeLinesRight(lines,error);
 
 			System.out.println(rightLines.get(0).toString());
-	//			Imgproc.line(img, rightLines.get(0).getStartingPoint(),rightLines.get(0).getEndingPoint(), new Scalar(255, 0, 0 ), 4);
+				Imgproc.line(img, rightLines.get(0).getStartingPoint(),rightLines.get(0).getEndingPoint(), new Scalar(255, 0, 0 ), 4);
 //				Imgproc.line(img, rightLines.get(1).getStartingPoint(), rightLines.get(1).getEndingPoint(), new Scalar(0, 255, 0), 4);
 //				Imgproc.line(img, rightLines.get(2).getStartingPoint(), rightLines.get(2).getEndingPoint(), new Scalar(0, 0, 255), 4);
 //				Imgproc.line(img, rightLines.get(3).getStartingPoint(), rightLines.get(3).getEndingPoint(), new Scalar(0, 255, 255), 4);

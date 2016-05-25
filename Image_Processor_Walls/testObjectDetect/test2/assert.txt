@@ -1,0 +1,1 @@
+detecta cu succes obiectele, dar mai gasea niste match-uri in plus care nu sunt valide

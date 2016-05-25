@@ -1,0 +1,3 @@
+Testul a esuat, keyPoint-urile in urma clusterizarii sunt la o distanta foarte mica, de aceea imi detecteaza obiectul fereastra chiar daca acolo el nu e
+
+am incercat sa refac formula, dar nu am reusit 
