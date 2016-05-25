@@ -1,5 +1,9 @@
 package com.imggraph;
 
+import java.beans.XMLDecoder;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +14,8 @@ import com.imgmodel.buildingParts.Stairs;
 import com.imgmodel.buildingParts.Wall;
 import com.imgmodel.buildingParts.Window;
 import com.imgmodel.graphModel.Room;
+import com.imgprocessor.model.Representation;
+import com.imgprocessor.processor.ImageProcessorImpl;
 
 public class Algorithm {
 
@@ -40,6 +46,9 @@ public class Algorithm {
 
 	List<Integer> roomsCount = new ArrayList<Integer>();
 	List<Room> roomList = new ArrayList<Room>();
+	
+	// The Representation Object
+	Representation imageRepresentation;
 
 	public Algorithm(){
 
@@ -66,30 +75,49 @@ public class Algorithm {
 
 	private void initialize(){
 
-		windows.add(new Window(new Coordinates(2, 0),new Coordinates(3,0)));
-		windows.add(new Window(new Coordinates(7,0),new Coordinates(8,0)));
-
-		doors.add(new Door(new Coordinates(2,3),new Coordinates(3,3)));
-		doors.add(new Door(new Coordinates(7,3),new Coordinates(8,3)));
-
-		walls.add(new Wall(new Coordinates(0,0),new Coordinates(2,0)));
-		walls.add(new Wall(new Coordinates(0,0),new Coordinates(0,3)));
-		walls.add(new Wall(new Coordinates(3,0),new Coordinates(5,0)));
-		walls.add(new Wall(new Coordinates(5,0),new Coordinates(7,0)));
-		walls.add(new Wall(new Coordinates(8,0),new Coordinates(10,0)));
-		walls.add(new Wall(new Coordinates(10,0),new Coordinates(10,3)));
-		walls.add(new Wall(new Coordinates(10,3),new Coordinates(8,3)));
-		walls.add(new Wall(new Coordinates(7,3),new Coordinates(5,3)));
-		walls.add(new Wall(new Coordinates(5,3),new Coordinates(3,3)));
-		walls.add(new Wall(new Coordinates(2,3),new Coordinates(0,3)));
-		walls.add(new Wall(new Coordinates(5,3),new Coordinates(5,0)));
-
-		walls.add(new Wall(new Coordinates(5,3),new Coordinates(5,5)));
-		walls.add(new Wall(new Coordinates(5,5),new Coordinates(10,5)));
-		walls.add(new Wall(new Coordinates(10,5),new Coordinates(10,3)));
-
-		stairs.add(new Stairs(new Coordinates(12,3),new Coordinates(14,0)));
-		stairs.add(new Stairs(new Coordinates(11,3),new Coordinates(12,0)));
+		imageRepresentation = new Representation();
+		
+		try {
+			
+			@SuppressWarnings("resource")
+			XMLDecoder decoder = new XMLDecoder(new FileInputStream(new File(ImageProcessorImpl.SAVED_XML_PATH)));
+			imageRepresentation = (Representation)decoder.readObject();
+			
+			this.windows = imageRepresentation.getWindows();
+			this.doors = imageRepresentation.getDoors();
+			this.stairs = imageRepresentation.getStairs();
+			this.walls = imageRepresentation.getWalls();
+			
+//			System.out.println("Loaded from xml: ");
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+//		windows.add(new Window(new Coordinates(2, 0),new Coordinates(3,0)));
+//		windows.add(new Window(new Coordinates(7,0),new Coordinates(8,0)));
+//
+//		doors.add(new Door(new Coordinates(2,3),new Coordinates(3,3)));
+//		doors.add(new Door(new Coordinates(7,3),new Coordinates(8,3)));
+//
+//		walls.add(new Wall(new Coordinates(0,0),new Coordinates(2,0)));
+//		walls.add(new Wall(new Coordinates(0,0),new Coordinates(0,3)));
+//		walls.add(new Wall(new Coordinates(3,0),new Coordinates(5,0)));
+//		walls.add(new Wall(new Coordinates(5,0),new Coordinates(7,0)));
+//		walls.add(new Wall(new Coordinates(8,0),new Coordinates(10,0)));
+//		walls.add(new Wall(new Coordinates(10,0),new Coordinates(10,3)));
+//		walls.add(new Wall(new Coordinates(10,3),new Coordinates(8,3)));
+//		walls.add(new Wall(new Coordinates(7,3),new Coordinates(5,3)));
+//		walls.add(new Wall(new Coordinates(5,3),new Coordinates(3,3)));
+//		walls.add(new Wall(new Coordinates(2,3),new Coordinates(0,3)));
+//		walls.add(new Wall(new Coordinates(5,3),new Coordinates(5,0)));
+//
+//		walls.add(new Wall(new Coordinates(5,3),new Coordinates(5,5)));
+//		walls.add(new Wall(new Coordinates(5,5),new Coordinates(10,5)));
+//		walls.add(new Wall(new Coordinates(10,5),new Coordinates(10,3)));
+//
+//		stairs.add(new Stairs(new Coordinates(12,3),new Coordinates(14,0)));
+//		stairs.add(new Stairs(new Coordinates(11,3),new Coordinates(12,0)));
 		/*walls.add(new Wall(new Coordinates(5,5),new Coordinates(5,7)));
 		walls.add(new Wall(new Coordinates(5,7),new Coordinates(10,7)));
 		walls.add(new Wall(new Coordinates(10,7),new Coordinates(10,5)));
@@ -132,15 +160,6 @@ public class Algorithm {
 		walls.add(new Wall(new Coordinates(12,0),new Coordinates(12,6)));
 		walls.add(new Wall(new Coordinates(12,6),new Coordinates(0,6)));
 		walls.add(new Wall(new Coordinates(0,6),new Coordinates(0,0)));*/
-
-
-
-
-
-
-
-
-
 
 
 	}

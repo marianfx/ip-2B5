@@ -16,7 +16,6 @@ public interface ImageProcessor {
     
    void process() throws ValidatingException, TruncatingException, ProcessingException;
    
-   public ExtendedImage getExtendedImage();
    
    /*progress bar and details text area listeners*/
    void addProgressChangedListener(ProgressChangedListener listener);
