@@ -84,30 +84,6 @@ public class MainViewController implements Initializable {
         
     }
     
-    public void addTextDetails(String txt)
-    {
-    	textDetails.appendText(txt + "\n");
-    }
-    
-    
-    public void setProgress(int nr)
-    {
-    	this.progressBar.setProgress(nr);
-    }
-    
-    
-    public void setImage(String path){
-    	
-
-        try {
-			imageView.setImage(new Image(new FileInputStream(path)));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-    }
-    
-    
-    
     
     /**
      * Load button controller.
@@ -174,6 +150,8 @@ public class MainViewController implements Initializable {
     		   imageProcessorImpl.addDetailsAppendListener( (DetailsAppendAction e) -> {
     			   
                    Platform.runLater(new Runnable() {
+                	   
+                	@Override
    					public void run() {
    						
    					 textDetails.appendText(e.getDetailsAppended());

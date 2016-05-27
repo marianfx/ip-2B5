@@ -164,22 +164,32 @@ public class ImageProcessorImpl implements ImageProcessor {
 		        // now all good, time to put them back (convert, fucking convert)
 		        // 1. The DOORS
 		        imageRepresentation.clearDoors();
+		        thisReff.appendDetail("The new DOORS coordinates (fixed to the walls): ");
+		        k = 1;
 		        for(Line door: theDoors){
 		        	
 		        	Coordinates start 	= new Coordinates((float)door.getStartingPoint().x, (float)door.getStartingPoint().y);
 		        	Coordinates end 	= new Coordinates((float)door.getEndingPoint().x, (float)door.getEndingPoint().y);
 		        	Door theDoor = new Door(start, end);
 		        	imageRepresentation.addDoor(theDoor);
+		        	thisReff.appendDetail(k + ". (" + (int)start.getX() + ", " + (int)start.getY() + ") -> (" + (int)end.getX() + ", " + (int)end.getY() + ")");
+		        	k++;
 		        }
+		        
+		        
 		        
 		        // 2. The WINDOWS
 		        imageRepresentation.clearWindows();
+		        thisReff.appendDetail("The new WINDOWS coordinates (fixed to the walls): ");
+		        k = 1;
 		        for(Line window: theWindows){
 		        	
 		        	Coordinates start 	= new Coordinates((float)window.getStartingPoint().x, (float)window.getStartingPoint().y);
 		        	Coordinates end 	= new Coordinates((float)window.getEndingPoint().x, (float)window.getEndingPoint().y);
 		        	Window theWindow = new Window(start, end);
 		        	imageRepresentation.addWindow(theWindow);
+		        	thisReff.appendDetail(k + ". (" + (int)start.getX() + ", " + (int)start.getY() + ") -> (" + (int)end.getX() + ", " + (int)end.getY() + ")");
+		        	k++;
 		        }
 		        
 		        

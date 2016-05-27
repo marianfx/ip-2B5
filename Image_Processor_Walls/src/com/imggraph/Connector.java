@@ -10,11 +10,11 @@ import com.imgmodel.graphModel.Room;
 
 public class Connector {
 
-	List<Room> rooms = new ArrayList<Room>();
-	List<BuildingPart> bp = new ArrayList<BuildingPart>();
-	List<ConnectHelper> c = new ArrayList<ConnectHelper>();
-	List<Door> door = new ArrayList<Door>();
-	static List<GraphEdge> gEdge = new ArrayList<GraphEdge>();
+	List<Room> rooms 				= new ArrayList<Room>();
+	List<BuildingPart> bp 			= new ArrayList<BuildingPart>();
+	List<ConnectHelper> c 			= new ArrayList<ConnectHelper>();
+	List<Door> door 				= new ArrayList<Door>();
+	static List<GraphEdge> gEdge 	= new ArrayList<GraphEdge>();
 	
 	
 	public Connector(List<Room> rooms){
@@ -22,9 +22,12 @@ public class Connector {
 	}
 	
 	public void connect(){
-		for(int i=0;i<rooms.size();i++){
-			for(int j=0;j<rooms.get(i).getParts().size();j++){
+		
+		for(int i = 0; i < rooms.size(); i++){
+			for(int j = 0; j < rooms.get(i).getParts().size(); j++){
+				
 				if(rooms.get(i).getParts().get(j).toString().equals("door")){
+					
 					ConnectHelper ch = new ConnectHelper();
 					ch.setBuildingPart(rooms.get(i).getParts().get(j));
 					ch.setRoom(String.valueOf(i));
@@ -42,18 +45,22 @@ public class Connector {
 			}
 			rooms.get(i).setAdjacentRooms(adjacentRooms);
 		}*/
+		
 		System.out.println("\nCamere in total:  " + c.size() + "\n" );
 		System.out.println(rooms.size());
 		List<Room> adjacentRooms = new ArrayList<Room>();
 		
-		for(int i=0;i<rooms.size();i++){//Luam fiecare camera
+		for(int i = 0; i < rooms.size(); i++){//Luam fiecare camera
 			
 			System.out.print("Camerele adiacente cu camera " + String.valueOf(i+1) + ":") ;
 			
-			for(int j=0;j<rooms.get(i).getParts().size();j++){
+			for(int j = 0; j < rooms.get(i).getParts().size(); j++){
+				
 				adjacentRooms = new ArrayList<Room>();
+				
 				if(rooms.get(i).getParts().get(j).toString().equals("door")){//Am gasit usa
-					for(int k=0;k<c.size();k++){//Cautam lista de usi
+					
+					for(int k = 0; k < c.size();k++){//Cautam lista de usi
 						//System.out.println(i + " " + c.get(k).getRoom());
 						if(i!=((Integer.parseInt(c.get(k).getRoom())))){//Verificam sa nu fie in aceeasi camera
 							/*System.out.println(rooms.get(i).getParts().get(j).getStart().getX() + " " + rooms.get(i).getParts().get(j).getStart().getY() + " " +
@@ -65,9 +72,11 @@ public class Connector {
 									rooms.get(i).getParts().get(j).getEnd().getX() == c.get(k).getBuildingPart().getEnd().getX() &&
 									rooms.get(i).getParts().get(j).getEnd().getY() == c.get(k).getBuildingPart().getEnd().getY()){
 							//if(rooms.get(i).getParts().get(j).equals(c.get(k).getBuildingPart())){//Am gasit doua usi cu aceleasi coordonate
-								System.out.print("   " + rooms.get(k).getName() + " ");
+//								System.out.print("   " + rooms.get(k).getName() + " ");
 								
-								adjacentRooms.add(rooms.get(k));	
+								Room roo = rooms.get(Integer.parseInt((c.get(k).room)));
+								System.out.println("   " + roo.getName());
+								adjacentRooms.add(roo);	
 								door.add(new Door(rooms.get(i).getParts().get(j).getStart(),rooms.get(i).getParts().get(j).getEnd()));
 							}
 						}
