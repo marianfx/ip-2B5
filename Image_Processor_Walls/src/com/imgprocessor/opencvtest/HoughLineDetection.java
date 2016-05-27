@@ -1,11 +1,7 @@
 package com.imgprocessor.opencvtest;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.imageio.ImageIO;
 
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
@@ -33,7 +29,9 @@ public class HoughLineDetection {
 	ImageProcessorImpl processor;
 	
 	
-	public Integer maxLineGap 		= 5;
+	public Integer maxLineGap1 		= 5;//for very closed-by lines
+	public Integer maxLineGap2		= 50;//for final merging of lines
+	public Integer maxLineGap3		= 50;//for perpendicularity
 	
 	public HoughLineDetection(String picPath, ImageProcessorImpl processor) {
 		
@@ -75,7 +73,10 @@ public class HoughLineDetection {
 	}
 	
 	
-	
+	/**
+	 * Detects the lines from the image and then post-processes them to obtain the walls.
+	 * @return
+	 */
 	public List<Line> detectLines(){
 		
 		processor.appendDetail("\n\nStarted detecting lines (for walls).");
@@ -93,9 +94,6 @@ public class HoughLineDetection {
 		processor.setProgress(5);
 		
 		// + 10
-		
-//		preprocessed = Filters.denoiseImage(preprocessed, true);
-
 
 		processor.appendDetail("Running billateral filter on the image (for blurring).");
 		preprocessed = Filters.billateralFilterImage(preprocessed, 9, 150, true, processor);
@@ -103,25 +101,11 @@ public class HoughLineDetection {
 		// + 10
 		
 		
-//		preprocessed = Filters.downsampleImage(preprocessed, true);
-		
-
-		
-//		preprocessed = Filters.gaussianBlurImage(preprocessed, 5, true);
-		
 
 		processor.appendDetail("Denoising image.");
 		preprocessed = Filters.denoiseImage(preprocessed, true, processor);
 		processor.setProgress(30);
 		// + 10
-		
-//		preprocessed = Filters.runMorphology(preprocessed, 1, Imgproc.MORPH_CROSS, Imgproc.MORPH_GRADIENT, 2, true);
-
-		
-		Mat blackMatrix = new Mat(preprocessed.size(), CvType.CV_8UC1, new Scalar(0));
-//		
-//	
-		blackMatrix = new Mat(preprocessed.size(), CvType.CV_8UC3, new Scalar(0));		
 
 
 		processor.appendDetail("Detecting RAW lines.");
@@ -129,34 +113,35 @@ public class HoughLineDetection {
 		LineSegmentDetector lineSegmentDetector = Imgproc.createLineSegmentDetector();
 		lineSegmentDetector.detect(preprocessed, lines);
 		
+		// get the list of lines and post-process them
 		List<Line> lines2 = transformIntoMatrixOfLines(lines);
+		return postProcessLines(lines2);
 		
-
+	}
+	
+	
+	private List<Line> postProcessLines(List<Line> input){
 		
 		// POST PROCESS LINES
 		
-		LineProcessor lp = new LineProcessor(lines2);
-////
+		LineProcessor lp = new LineProcessor(input);
+		List<Line> output = new ArrayList<>();
+		Mat blackMatrix = new Mat(preprocessed.size(), CvType.CV_8UC3, new Scalar(0));
+
+		// the initial detected lines
 		finalImage = blackMatrix.clone();
-		lp.drawLines(lines2, finalImage, WHITE, 1, false, true, processor);
-		// lines detected here
+		LineProcessor.drawLines(input, finalImage, WHITE, 1, false, true, processor);
 		processor.setProgress(70);
 		
 
-		// removing same lines
-//		processor.appendDetail("Removing some lines that may represent the same line.");
-//		finalImage = blackMatrix.clone();
-//		lines2 = lp.removeSameLines(lines2, 6);
-//		lp.drawLines(lines2, finalImage, WHITE, 1, false, true, processor);
-
 		processor.appendDetail("Fixing some lines (making them right) and removing small lines.");
 		finalImage = blackMatrix.clone();
-		lines2 = lp.makeLinesRight(lines2, 10);
-		lp.drawLines(lines2, finalImage, WHITE, 1, false, true, processor);
+		output = lp.makeLinesRight(input, 10);
+		LineProcessor.drawLines(output, finalImage, WHITE, 1, false, true, processor);
 		
 		finalImage = blackMatrix.clone();
-		lines2 = lp.removeSmallLines(lines2, 35);
-		lp.drawLines(lines2, finalImage, WHITE, 1, false, true, processor);
+		output = lp.removeSmallLines(output, 35);
+		LineProcessor.drawLines(output, finalImage, WHITE, 1, false, true, processor);
 
 		// + 10
 		processor.setProgress(80);
@@ -164,50 +149,48 @@ public class HoughLineDetection {
 
 		processor.appendDetail("Post-processing lines (fixing some gaps, merging same-like lines).");
 		finalImage = blackMatrix.clone();
-		lines2 = lp.filterLiter(lines2, maxLineGap);
-		lp.drawLines(lines2, finalImage, WHITE, 1, false, true, processor);
+		output = lp.filterLiter(output, maxLineGap1);
+		LineProcessor.drawLines(output, finalImage, WHITE, 1, false, true, processor);
+		
 		
 		finalImage = blackMatrix.clone();
-		lines2 = lp.makeLinesRight(lines2, 10);
-		lp.drawLines(lines2, finalImage, WHITE, 1, false, true, processor);
-////		
+		output = lp.makeLinesRight(output, 10);
+		LineProcessor.drawLines(output, finalImage, WHITE, 1, false, true, processor);		
 		// + 10
 		processor.setProgress(90);
 
 		
-//
 		processor.appendDetail("Fixing again the lines (making them right) and re-running the post-processing.");
 		finalImage = blackMatrix.clone();
-		lines2 = lp.filterLiter(lines2, maxLineGap);
-		lp.drawLines(lines2, finalImage, WHITE, 1, false, true, processor);	
-//		
-		finalImage = blackMatrix.clone();
+		output = lp.filterLiter(output, maxLineGap1);
+		LineProcessor.drawLines(output, finalImage, WHITE, 1, false, true, processor);	
+		
 		
 		
 		//obtain single lines from multiple 
-		lines2 = lp.getLinesWithThisThickness(lines2);
-		lp.drawLines(lines2, finalImage, GREEN, 2, false, true, processor);
+		finalImage = blackMatrix.clone();
+		output = lp.getLinesWithThisThickness(finalImage, output);
+		LineProcessor.drawLines(output, finalImage, GREEN, 2, false, true, processor);
+		
+		
+
+		// then unite the perpendicular ones
+		
+		processor.appendDetail("Final merging of lines");
+		output = LineProcessor.uniteLinesFinal(finalImage, output, maxLineGap3, false);
+		finalImage = blackMatrix.clone();
+		LineProcessor.drawLines(output, finalImage, GREEN, 1, true, true, processor);	
+		
+//		output = lp.removeSameLines(output, 50);
+//		finalImage = blackMatrix.clone();
+//		lp.drawLines(output, finalImage, GREEN, 1, true, true, processor);
 		
 		 // + 10
 		processor.setProgress(100);
-
-		
-
-//		finalImage = blackMatrix.clone();
-//		lines2 = lp.makeLinesRight(lines2, 15);
-//		lp.drawLines(lines2, finalImage, WHITE, 1, false, true);
-//		
 		processor.appendDetail("Finally. Finished.");
 		
-		//set image
-		try {
-			processor.updateImage(ImageIO.read(new File(LineProcessor.drawID + ". lineDetection.png")));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
-		return lines2;
-		
+		return output;
 	}
 
 }

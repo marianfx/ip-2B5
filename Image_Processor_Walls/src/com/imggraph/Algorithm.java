@@ -23,6 +23,8 @@ public class Algorithm {
 	static BuildingPart bp;
 	static int index;
 	public static List<Room> finalRooms = new ArrayList<Room>();
+	int errorRange = 1;
+
 
 	List<Node> nodesList = new ArrayList<Node>();
 	List<BuildingPart> roomObject;
@@ -46,10 +48,10 @@ public class Algorithm {
 
 	List<Integer> roomsCount = new ArrayList<Integer>();
 	List<Room> roomList = new ArrayList<Room>();
-	
+
 	// The Representation Object
 	Representation imageRepresentation;
-
+	
 	public Algorithm(){
 
 		initialize();
@@ -57,6 +59,10 @@ public class Algorithm {
 		setAlgorithmParts();
 		algorithm();
 		setRooms();
+	}
+
+	public void setErrorRange(int errorRange){
+		this.errorRange = errorRange;
 	}
 
 	public Algorithm(List<Wall> walls,List<Window> windows,List<Door> doors,List<Stairs> stairs){
@@ -74,7 +80,7 @@ public class Algorithm {
 	}
 
 	private void initialize(){
-
+		
 		imageRepresentation = new Representation();
 		
 		try {
@@ -94,73 +100,6 @@ public class Algorithm {
 			e.printStackTrace();
 		}
 		
-//		windows.add(new Window(new Coordinates(2, 0),new Coordinates(3,0)));
-//		windows.add(new Window(new Coordinates(7,0),new Coordinates(8,0)));
-//
-//		doors.add(new Door(new Coordinates(2,3),new Coordinates(3,3)));
-//		doors.add(new Door(new Coordinates(7,3),new Coordinates(8,3)));
-//
-//		walls.add(new Wall(new Coordinates(0,0),new Coordinates(2,0)));
-//		walls.add(new Wall(new Coordinates(0,0),new Coordinates(0,3)));
-//		walls.add(new Wall(new Coordinates(3,0),new Coordinates(5,0)));
-//		walls.add(new Wall(new Coordinates(5,0),new Coordinates(7,0)));
-//		walls.add(new Wall(new Coordinates(8,0),new Coordinates(10,0)));
-//		walls.add(new Wall(new Coordinates(10,0),new Coordinates(10,3)));
-//		walls.add(new Wall(new Coordinates(10,3),new Coordinates(8,3)));
-//		walls.add(new Wall(new Coordinates(7,3),new Coordinates(5,3)));
-//		walls.add(new Wall(new Coordinates(5,3),new Coordinates(3,3)));
-//		walls.add(new Wall(new Coordinates(2,3),new Coordinates(0,3)));
-//		walls.add(new Wall(new Coordinates(5,3),new Coordinates(5,0)));
-//
-//		walls.add(new Wall(new Coordinates(5,3),new Coordinates(5,5)));
-//		walls.add(new Wall(new Coordinates(5,5),new Coordinates(10,5)));
-//		walls.add(new Wall(new Coordinates(10,5),new Coordinates(10,3)));
-//
-//		stairs.add(new Stairs(new Coordinates(12,3),new Coordinates(14,0)));
-//		stairs.add(new Stairs(new Coordinates(11,3),new Coordinates(12,0)));
-		/*walls.add(new Wall(new Coordinates(5,5),new Coordinates(5,7)));
-		walls.add(new Wall(new Coordinates(5,7),new Coordinates(10,7)));
-		walls.add(new Wall(new Coordinates(10,7),new Coordinates(10,5)));
-
-		walls.add(new Wall(new Coordinates(10,0),new Coordinates(14,0)));
-		walls.add(new Wall(new Coordinates(14,0),new Coordinates(14,3)));
-		walls.add(new Wall(new Coordinates(14,3),new Coordinates(10,3)));
-		*/
-
-
-
-
-		/*
-		windows.add(new Window(new Coordinates(0,8),new Coordinates(0,10)));
-		windows.add(new Window(new Coordinates(3,0),new Coordinates(5,0)));
-
-		doors.add(new Door(new Coordinates(10,6),new Coordinates(12,6)));
-		doors.add(new Door(new Coordinates(9,8),new Coordinates(9,10)));
-		doors.add(new Door(new Coordinates(7,13),new Coordinates(5,13)));
-
-		walls.add(new Wall(new Coordinates(0,0),new Coordinates(3,0)));
-		walls.add(new Wall(new Coordinates(5,0),new Coordinates(12,0)));
-		walls.add(new Wall(new Coordinates(12,0),new Coordinates(12,6)));
-		walls.add(new Wall(new Coordinates(10,6),new Coordinates(0,6)));
-		walls.add(new Wall(new Coordinates(0,6),new Coordinates(0,0)));
-		walls.add(new Wall(new Coordinates(9,6),new Coordinates(9,8)));
-		walls.add(new Wall(new Coordinates(9,10),new Coordinates(9,13)));
-		walls.add(new Wall(new Coordinates(9,13),new Coordinates(7,13)));
-		walls.add(new Wall(new Coordinates(0,13),new Coordinates(5,13)));
-		walls.add(new Wall(new Coordinates(0,13),new Coordinates(0,10)));
-		walls.add(new Wall(new Coordinates(0,8),new Coordinates(0,6)));
-		*/
-		/*windows.add(new Window(new Coordinates(3,0),new Coordinates(5,0)));
-
-		doors.add(new Door(new Coordinates(10,6),new Coordinates(12,6)));
-
-		walls.add(new Wall(new Coordinates(0,0),new Coordinates(3,0)));
-		walls.add(new Wall(new Coordinates(5,0),new Coordinates(12,0)));
-		walls.add(new Wall(new Coordinates(12,0),new Coordinates(12,6)));
-		walls.add(new Wall(new Coordinates(12,0),new Coordinates(12,6)));
-		walls.add(new Wall(new Coordinates(12,6),new Coordinates(0,6)));
-		walls.add(new Wall(new Coordinates(0,6),new Coordinates(0,0)));*/
-
 
 	}
 
@@ -179,6 +118,21 @@ public class Algorithm {
 		for(int i=0;i<doors.size();i++){
 			mAlgBuildingParts.add(new AlgorithmBuildingPart(doors.get(i).getStart().getX(),doors.get(i).getStart().getY(),
 					doors.get(i).getEnd().getX(),doors.get(i).getEnd().getY(),"door",nodeLabel++,nodeLabel++));
+		}
+
+		for(int i=0;i<mAlgBuildingParts.size()-1;i++){
+			for(int j=i+1; j<mAlgBuildingParts.size();j++){
+				
+				if(Coordinates.getDistance(mAlgBuildingParts.get(i).getEnd(),mAlgBuildingParts.get(j).getStart())<=errorRange){
+					mAlgBuildingParts.get(j).setStart(mAlgBuildingParts.get(i).getEnd());
+				}else if(Coordinates.getDistance(mAlgBuildingParts.get(i).getStart(),mAlgBuildingParts.get(j).getStart())<=errorRange){
+					mAlgBuildingParts.get(j).setStart(mAlgBuildingParts.get(i).getStart());
+				}else if(Coordinates.getDistance(mAlgBuildingParts.get(i).getEnd(),mAlgBuildingParts.get(j).getEnd())<=errorRange){
+					mAlgBuildingParts.get(j).setEnd(mAlgBuildingParts.get(i).getEnd());
+				}else if(Coordinates.getDistance(mAlgBuildingParts.get(i).getStart(),mAlgBuildingParts.get(j).getEnd())<=errorRange){
+					mAlgBuildingParts.get(j).setEnd(mAlgBuildingParts.get(i).getStart());
+				}
+			}
 		}
 	}
 
@@ -223,35 +177,6 @@ public class Algorithm {
 
 		}
 
-		/*
-		edges.add(new Edge(0,1));
-		edges.add(new Edge(1,2));
-		edges.add(new Edge(2,3));
-		edges.add(new Edge(3,4));
-		edges.add(new Edge(4,5));
-		edges.add(new Edge(5,0));
-		edges.add(new Edge(6,0));
-		edges.add(new Edge(6,7));
-		edges.add(new Edge(7,3));
-		//edges.add(new Edge(8,9));
-		//edges.add(new Edge(9,0));
-
-		//System.out.println(edges.size()*2);
-		/*
-		Node[] nodes = new Node[edges.size()*2];
-		int counter = 0;
-		for(int i=0;i<edges.size();i++){
-			nodes[counter++] = nodesList.get(edges.get(i).getX());
-			//System.out.print(nodes[counter-1].label + " ");
-			nodes[counter++] = nodesList.get(edges.get(i).getY());
-			/////System.out.print(nodes[counter-1].label + " ");
-		}
-
-		/*System.out.println(nodes.length);
-
-		for(int i=0;i<nodes.length;i++){
-			System.out.print(nodes[i].label + " ");
-		}*/
 
 		nodes = new Node[mEdges.size()*2];
 		//System.out.println(mEdges.size()*2);

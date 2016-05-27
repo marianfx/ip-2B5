@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_73" class="java.beans.XMLDecoder">
+ <object class="com.imgmodel.graphModel.Graph" id="Graph0">
+  <void property="nodes">
+   <void method="add">
+    <object class="com.imgmodel.graphModel.Room" id="Room0">
+     <void property="corners">
+      <void method="add">
+       <object class="com.imgmodel.buildingParts.Coordinates" id="Coordinates0">
+        <void property="x">
+         <float>60.0</float>
+        </void>
+        <void property="y">
+         <float>56.0</float>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="com.imgmodel.buildingParts.Coordinates" id="Coordinates1">
+        <void property="x">
+         <float>60.0</float>
+        </void>
+        <void property="y">
+         <float>305.0</float>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="com.imgmodel.buildingParts.Coordinates" id="Coordinates2">
+        <void property="x">
+         <float>60.0</float>
+        </void>
+        <void property="y">
+         <float>717.0</float>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="com.imgmodel.buildingParts.Coordinates" id="Coordinates3">
+        <void property="x">
+         <float>60.0</float>
+        </void>
+        <void property="y">
+         <float>1088.0</float>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="com.imgmodel.buildingParts.Coordinates" id="Coordinates4">
+        <void property="x">
+         <float>993.0</float>
+        </void>
+        <void property="y">
+         <float>1088.0</float>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="level">
+      <string>etaj 1</string>
+     </void>
+     <void property="name">
+      <string>c1</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgmodel.graphModel.Room" id="Room1">
+     <void property="corners">
+      <void method="add">
+       <object idref="Coordinates0"/>
+      </void>
+      <void method="add">
+       <object idref="Coordinates1"/>
+      </void>
+      <void method="add">
+       <object idref="Coordinates2"/>
+      </void>
+      <void method="add">
+       <object class="com.imgmodel.buildingParts.Coordinates" id="Coordinates5">
+        <void property="x">
+         <float>270.62555</float>
+        </void>
+        <void property="y">
+         <float>717.38043</float>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="com.imgmodel.buildingParts.Coordinates" id="Coordinates6">
+        <void property="x">
+         <float>381.87494</float>
+        </void>
+        <void property="y">
+         <float>717.3706</float>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="com.imgmodel.buildingParts.Coordinates" id="Coordinates7">
+        <void property="x">
+         <float>993.0</float>
+        </void>
+        <void property="y">
+         <float>716.0</float>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object class="com.imgmodel.buildingParts.Coordinates" id="Coordinates8">
+        <void property="x">
+         <float>993.40466</float>
+        </void>
+        <void property="y">
+         <float>840.6266</float>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="level">
+      <string>etaj 1</string>
+     </void>
+     <void property="name">
+      <string>c2</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="com.imgmodel.graphModel.Room" id="Room2">
+     <void property="corners">
+      <void method="add">
+       <object idref="Coordinates2"/>
+      </void>
+      <void method="add">
+       <object idref="Coordinates5"/>
+      </void>
+      <void method="add">
+       <object idref="Coordinates6"/>
+      </void>
+      <void method="add">
+       <object idref="Coordinates7"/>
+      </void>
+      <void method="add">
+       <object idref="Coordinates8"/>
+      </void>
+      <void method="add">
+       <object class="com.imgmodel.buildingParts.Coordinates">
+        <void property="x">
+         <float>993.40155</float>
+        </void>
+        <void property="y">
+         <float>951.8737</float>
+        </void>
+       </object>
+      </void>
+      <void method="add">
+       <object idref="Coordinates4"/>
+      </void>
+      <void method="add">
+       <object idref="Coordinates3"/>
+      </void>
+     </void>
+     <void property="level">
+      <string>etaj 1</string>
+     </void>
+     <void property="name">
+      <string>c3</string>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>

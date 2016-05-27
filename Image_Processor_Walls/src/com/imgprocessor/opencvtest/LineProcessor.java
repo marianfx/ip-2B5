@@ -3,11 +3,7 @@ package com.imgprocessor.opencvtest;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.imageio.ImageIO;
 
@@ -17,8 +13,11 @@ import org.opencv.core.Scalar;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
+import com.imgprocessor.model.Gauss_Jordan_Elimination;
 import com.imgprocessor.model.Line;
 import com.imgprocessor.model.Line.Equation;
+import com.imgprocessor.model.Line.line_type;
+import com.imgprocessor.processor.DetectObject.PointsWrapper;
 import com.imgprocessor.processor.ImageProcessorImpl;
 
 public class LineProcessor {
@@ -83,7 +82,7 @@ public class LineProcessor {
 			
 			Line line = lines.get(i);
 			
-			if(getDistance(line.getStartingPoint(), line.getEndingPoint()) >= minSizeToKeep)
+			if(line.getLength() >= minSizeToKeep)
 				output.add(line);
 		}
 		
@@ -91,16 +90,18 @@ public class LineProcessor {
 	}
 	
 	
-	
-	List<Line> filterLiter(List<Line> theLines, Integer limitSoTheyAreTheSame){
+	/**
+	 * Unite lines that are approx parallel and have close-ends (basically represent almost the same line
+	 * @param theLines
+	 * @param limitSoTheyAreTheSame
+	 * @return
+	 */
+	public List<Line> filterLiter(List<Line> theLines, Integer limitSoTheyAreTheSame){
 
 		boolean found = false;
 		
 		theLines.sort(new Line(1, 1, 1, 1));
 		
-//		for(int x = 0; x < theLines.size(); x++){
-//			System.out.println(theLines.get(x));
-//		}
 		
 		for(int x = 0; x < theLines.size(); x++){
 
@@ -192,16 +193,11 @@ public class LineProcessor {
 	}
 	
 
-
-	private double getDistance(Point p1, Point p2)
-	{
-		return Math.sqrt((p2.x-p1.x)*(p2.x-p1.x) + (p2.y-p1.y)*(p2.y-p1.y));
-	}
-
 	
-	//make a function to get thicknesses from the image
-	
-	public List<Line> removeSameLines(List<Line> theLines, Integer dist){
+	List<Line> uniteLinesLinear(Mat toDrawOn, List<Line> theLines, Integer limitSoTheyAreTheSame){
+
+		theLines.sort(new Line(1, 1, 1, 1));
+		
 		
 		for(int x = 0; x < theLines.size(); x++){
 
@@ -213,19 +209,247 @@ public class LineProcessor {
 				Line l2 = theLines.get(y);
 				l2.normalizeAfterXAxys();
 
-				double distanceStart 	= getDistance(new Point(l1.x1, l1.y1), new Point(l2.x1, l2.y1));
-				double distanceEnd 		= getDistance(new Point(l1.x2, l1.y2), new Point(l2.x2, l2.y2));
+				Point l1Start 	= new Point(l1.x1, l1.y1);
+				Point l1End		= new Point(l1.x2, l1.y2);
+				
+				Point l2Start	= new Point(l2.x1, l2.y1);
+				Point l2End		= new Point(l2.x2, l2.y2);
+				
+				double distanceSS 	= getDistance(l1Start, l2Start);
+				double distanceEE 	= getDistance(l1End, l2End);
+				double distanceSE 	= getDistance(l1Start, l2End);
+				double distanceES 	= getDistance(l1End, l2Start);
+				
+				double minDist = Math.min(Math.min(distanceEE, distanceSS), Math.min(distanceES, distanceSE));
+				
+				Point maxStart = null;
+				Point maxEnd   = null;
+				Point minStart = null;
+				Point minEnd   = null;
 
-				//distanta trebuie sa fie mai mica decat 6 -> sa arate mai frumos
-				if(distanceStart < dist && distanceEnd < dist)
-				{
-					System.out.println(distanceStart);
-					System.out.println("Removed some lines that looked alike.");
-
-					//verticalLine.add(l2);
-					theLines.remove(y);
-					y--;
+				Line minLine   = null;
+				Line otherLine = null;
+				
+				if(minDist == distanceSS){
+					minLine 	= new Line(l1Start, l2Start);
+					otherLine   = new Line(l1End, l2End);
 				}
+				else if(minDist == distanceEE){
+					minLine 	= new Line(l1End, l2End);
+					otherLine   = new Line(l1Start, l2Start);
+				}
+				else if(minDist == distanceSE){
+					minLine 	= new Line(l1Start, l2End);
+					otherLine   = new Line(l1End, l2Start);
+				}
+				else if(minDist == distanceES){
+					minLine 	= new Line(l1End, l2Start);
+					otherLine   = new Line(l1Start, l2End);
+				}
+				
+				
+
+				maxStart 	= otherLine.getStartingPoint();
+				maxEnd 		= otherLine.getEndingPoint();
+				minStart	= minLine.getStartingPoint();
+				minEnd		= minLine.getEndingPoint();
+				
+				double maxDist = otherLine.getLength();
+				double maxLength = Math.min(getDistance(l1Start, l1End), getDistance(l2Start, l2End));
+				
+				
+				//first unite the heads
+				if((l1.isParallelWith(l2)) &&  minDist < limitSoTheyAreTheSame && maxDist > maxLength + 1 ){
+					
+//					if((Math.abs(minStart.x - minEnd.x) <= limitSoTheyAreTheSame) || Math.abs(minStart.y - minEnd.y) <= limitSoTheyAreTheSame){
+					
+						System.out.println("Found aprox equal lines: " + l1.toString() + "; " + l2.toString());
+	
+						Imgproc.circle(toDrawOn, minStart, 10, new Scalar(0, 0, 255), 2);
+						Imgproc.circle(toDrawOn, minEnd, 10, new Scalar(0, 0, 255), 2);
+						drawID++;
+						Imgcodecs.imwrite("lines/" + drawID + ". lineDetection - mins.png", toDrawOn);
+						
+						Imgproc.circle(toDrawOn, maxStart, 10, new Scalar(0, 0,255), 2);
+						Imgproc.circle(toDrawOn, maxEnd, 10, new Scalar(0, 0, 255), 2);
+						drawID++;
+						Imgcodecs.imwrite("lines/" + drawID + ". lineDetection - maxs.png", toDrawOn);
+						
+//					}
+					
+				} 
+			}
+		}
+
+
+		return theLines;
+	}
+	
+
+	public static List<Line> uniteLinesFinal(Mat toDrawOn, List<Line> theLines, Integer limitSoTheyAreTheSame, boolean draw){
+
+		theLines.sort(new Line(1, 1, 1, 1));
+		
+		for(int x = 0; x < theLines.size(); x++){
+
+			Line l1 = theLines.get(x);
+			l1.normalizeAfterXAxys();
+			
+			for(int y = x + 1; y < theLines.size(); y++)
+			{
+				Line l2 = theLines.get(y);
+				l2.normalizeAfterXAxys();
+				
+				// compute the two line's intersection
+				Equation fleq = l1.getEquation();
+				Equation sleq = l2.getEquation();
+				
+				double a = fleq.a;
+				double b = fleq.b;
+				double c = - fleq.c;
+
+				double a1 = sleq.a;
+				double b1 = sleq.b;
+				double c1 = - sleq.c;
+				
+				
+				double [][] mat = new double[][]{
+		        	{a,b},
+		        	{a1,b1}
+		        	};
+		        double []constants = new double[]
+		        		{c,c1};
+		            
+		        
+		        Point intersection = Gauss_Jordan_Elimination.getPoint(mat,constants);
+		        
+		        
+		        // cases to break
+//		        if(!l1.isPerpendicularWith(l2)) continue;
+		        
+		        if(intersection == null) continue;
+		        
+
+		        intersection = new Point((int)intersection.x, (int)intersection.y);
+				
+
+				Point l1Start 	= l1.getStartingPoint();
+				Point l1End		= l1.getEndingPoint();
+				
+				Point l2Start	= l2.getStartingPoint();
+				Point l2End		= l2.getEndingPoint();
+				
+				double distanceSS 	= getDistance(l1Start, l2Start);
+				double distanceEE 	= getDistance(l1End, l2End);
+				double distanceSE 	= getDistance(l1Start, l2End);
+				double distanceES 	= getDistance(l1End, l2Start);
+				
+				double minDist = Math.min(Math.min(distanceEE, distanceSS), Math.min(distanceES, distanceSE));
+				
+				Point minStart = null;
+				Point minEnd   = null;
+				Point maxStart = null;
+				Point maxEnd   = null;
+
+				Line minLine   = null;
+				Line otherLine = null;
+				
+				int l1type = 0; // 1 == update the end, 2 == update the start
+				int l2type = 0;
+				
+				if(minDist == distanceSS){
+					minLine 	= new Line(l1Start, l2Start);
+					otherLine   = new Line(l1End, l2End);
+					// update start on both
+					l1type 		= 1;
+					l2type		= 1;
+				}
+				else if(minDist == distanceEE){
+					minLine 	= new Line(l1End, l2End);
+					otherLine   = new Line(l1Start, l2Start);
+					// update end on both
+					l1type 		= 2;
+					l2type		= 2;
+				}
+				else if(minDist == distanceSE){
+					minLine 	= new Line(l1Start, l2End);
+					otherLine   = new Line(l1End, l2Start);
+					// update start on first, end on second
+					l1type 		= 1;
+					l2type		= 2;
+				}
+				else if(minDist == distanceES){
+					minLine 	= new Line(l1End, l2Start);
+					otherLine   = new Line(l1Start, l2End);
+					// update start on first, end on second
+					l1type 		= 2;
+					l2type		= 1;
+				}
+				
+				minStart 	= minLine.getStartingPoint();
+				minEnd 		= minLine.getEndingPoint();
+				maxStart 	= otherLine.getStartingPoint();
+				maxEnd		= otherLine.getEndingPoint();
+				
+				minStart = new Point((int)minStart.x, (int)minStart.y);
+				minEnd = new Point((int)minEnd.x, (int)minEnd.y);
+				maxStart = new Point((int)maxStart.x, (int)maxStart.y);
+				maxEnd = new Point((int)maxEnd.x, (int)maxEnd.y);
+				
+				// if already the same, do not unite
+				if(minStart.x == minEnd.x && minStart.y == minEnd.y) continue;
+				
+
+				// now we know the max distance too
+				double maxDist = otherLine.getLength();
+				double maxLength = Math.min(getDistance(l1Start, l1End), getDistance(l2Start, l2End));
+				
+				
+				
+		        
+		        if(minDist > limitSoTheyAreTheSame) continue;
+		        
+		        if(maxDist < maxLength + 1) continue;
+		        
+				
+		        //draw the ends if all ok
+//	        	minStart = minEnd = intersection;
+//				Line nextL1 = new Line(minStart, maxStart);
+//				Line nextL2 = new Line(minEnd, maxEnd);
+				
+				// remove the old ones, add the new ones
+				if(l1type == 1)
+					l1.setStartingPoint(intersection);
+				else
+					l1.setEndingPoint(intersection);
+				
+				if(l2type == 1)
+					l2.setStartingPoint(intersection);
+				else
+					l2.setEndingPoint(intersection);
+				
+				if(draw){
+					
+	//				Imgproc.line(toDrawOn, minStart, maxStart, new Scalar(0, 255, 0), 2);
+	//				Imgproc.line(toDrawOn, minEnd, maxEnd, new Scalar(0, 255, 0), 2);
+					System.out.format("United: (%d, %d) -> (%d, %d) with (%d, %d) -> (%d, %d)\n", (int)minStart.x, (int)minStart.y, (int)maxStart.x, (int)maxStart.y, (int)minEnd.x, (int)minEnd.y, (int)maxEnd.x, (int)maxEnd.y);
+					Imgproc.circle(toDrawOn, minStart, 10, new Scalar(255, 0, 255), 2);
+					Imgproc.circle(toDrawOn, maxStart, 10, new Scalar(255, 0, 255), 2);
+					drawID++;
+					Imgcodecs.imwrite("lines/" + drawID + ". lineDetection - ONE.png", toDrawOn);
+					
+					Imgproc.circle(toDrawOn, minEnd, 10, new Scalar(128, 255, 0), 2);
+					Imgproc.circle(toDrawOn, maxEnd, 10, new Scalar(128, 255, 0), 2);
+					drawID++;
+					Imgcodecs.imwrite("lines/" + drawID + ". lineDetection - TWO.png", toDrawOn);
+					
+	
+					Imgproc.circle(toDrawOn, intersection, 10, new Scalar(255, 0, 0), 2);
+					drawID++;
+					Imgcodecs.imwrite("lines/" + drawID + ". lineDetection - INTERSECT.png", toDrawOn);
+				}
+				
+				
 			}
 		}
 
@@ -234,22 +458,129 @@ public class LineProcessor {
 	}
 	
 	
- 	public List<Line> getLinesWithThisThickness(List<Line> theLines){
+	public static List<Line> uniteObjectsWithWalls(Mat toDrawOn, List<Line> theLines, List<Line> theObjects, Integer limitSoTheyAreTheSame, boolean draw){
 
+		theLines.sort(new Line());
+		theObjects.sort(new Line());
 		
-		boolean found = false;
+		
+		for(int i = 0; i < theObjects.size(); i++){
+			
+			Line object = theObjects.get(i);
+			object.normalizeAfterXAxys();
+			
+			for(int x = 0; x < theLines.size(); x++){
+	
+				Line l1 = theLines.get(x);
+				l1.normalizeAfterXAxys();
+				
+				for(int y = x + 1; y < theLines.size(); y++)
+				{
+					Line l2 = theLines.get(y);
+					l2.normalizeAfterXAxys();
+					
+					
+					Point intersWithFirstLine = isCloseOnAtLeastOneEnd(object, l1, limitSoTheyAreTheSame);
+					Point intersWithSecndLine = isCloseOnAtLeastOneEnd(object, l2, limitSoTheyAreTheSame);
+					
+					//if the door is not close to BOTH of the walls, it means it's not good
+					if(intersWithFirstLine == null || intersWithSecndLine == null)
+						continue;
+					
+					object.setStartingPoint(intersWithFirstLine);
+					object.setEndingPoint(intersWithSecndLine);
+					
+			        
+					
+					if(draw){
+						
+		//				Imgproc.line(toDrawOn, minStart, maxStart, new Scalar(0, 255, 0), 2);
+		//				Imgproc.line(toDrawOn, minEnd, maxEnd, new Scalar(0, 255, 0), 2);
+						System.out.format("United OBJECT into (%d, %d) -> (%d, %d)\n", (int)object.getStartingPoint().x, (int)object.getStartingPoint().y, (int)object.getEndingPoint().x, (int)object.getEndingPoint().y);
+						Imgproc.circle(toDrawOn, object.getStartingPoint(), 10, new Scalar(255, 0, 255), 2);
+						Imgproc.circle(toDrawOn, object.getEndingPoint(), 10, new Scalar(255, 0, 255), 2);
+						drawID++;
+						Imgcodecs.imwrite("lines/" + drawID + ". lineDetection - THE OBJECT.png", toDrawOn);
+						
+					}
+					
+					//stop, because I found the walls
+					y = theLines.size();
+					x = theLines.size();
+					
+				}
+			}
+		}
+
+
+		return theObjects;
+	}
+	
+	
+	/**
+	 * Checks if the two ones are close eough, and so, returns the point from the wall closer to the door (will represent the intersection).
+	 * @param door
+	 * @param wall
+	 * @param maxDist
+	 * @return
+	 */
+	public static Point isCloseOnAtLeastOneEnd(Line object, Line wall, Integer maxDist){
+		
+		Point output = null;
+		
+		Point l1Start 	= object.getStartingPoint();
+		Point l1End		= object.getEndingPoint();
+		
+		Point l2Start	= wall.getStartingPoint();
+		Point l2End		= wall.getEndingPoint();
+		
+		double distanceSS 	= getDistance(l1Start, l2Start);
+		double distanceEE 	= getDistance(l1End, l2End);
+		double distanceSE 	= getDistance(l1Start, l2End);
+		double distanceES 	= getDistance(l1End, l2Start);
+		
+		double minDist = Math.min(Math.min(distanceEE, distanceSS), Math.min(distanceES, distanceSE));
+		
+		if (minDist > maxDist) return null;
+		
+		if(minDist == distanceSS){
+			output = wall.getStartingPoint();
+		}
+		else if(minDist == distanceEE){
+			output = wall.getEndingPoint();
+		}
+		else if(minDist == distanceSE){
+			output = wall.getEndingPoint();
+		}
+		else if(minDist == distanceES){
+			output = wall.getStartingPoint();
+		}
+		
+		return output;
+		
+	}
+	
+	
+	
+	private static double getDistance(Point p1, Point p2)
+	{
+		return Math.sqrt((p2.x-p1.x)*(p2.x-p1.x) + (p2.y-p1.y)*(p2.y-p1.y));
+	}
+	
+	
+ 	public List<Line> getLinesWithThisThickness(Mat toDraw, List<Line> theLines){
 		
 		theLines.sort(new Line(1, 1, 1, 1));
 		
 		List<Line> output = new ArrayList<>();
 		
+		boolean removed = false;
 		
 		for(int x = 0; x < theLines.size(); x++){
 			
 			Line l1 = theLines.get(x);
 			l1.normalizeAfterXAxys();
-			
-			found = false;
+			removed = false;
 			
 			for(int y = x + 1; y < theLines.size(); y++)
 			{
@@ -263,8 +594,8 @@ public class LineProcessor {
 				double length2 = l2.getLength();
 				
 				//decide which one is longer
-				Line minLine = length1 <= length2 ? l1 : l2;
-				Line maxLine = length1 <= length2 ? l2 : l1;
+				Line minLine = length1 <= length2 ? new Line(l1) : new Line(l2);
+				Line maxLine = length1 <= length2 ? new Line(l2) : new Line(l1);
 				
 //				Point l1Start 	= new Point(l1.x1, l1.y1);
 //				Point l1End		= new Point(l1.x2, l1.y2);
@@ -279,17 +610,17 @@ public class LineProcessor {
 				//now hold the minimum distance
 				
 				//aflu proiectia ambelor capete pe dreapta maxLine
-				Point p1 = minLine.getStartingPoint();
-				double k = ((maxLine.y2 - maxLine.y1) * (p1.x - maxLine.x1) - (maxLine.x2 - maxLine.x1) * (p1.y - maxLine.y1)) / ((maxLine.y2 - maxLine.y1) * (maxLine.y2 - maxLine.y1) + (maxLine.x2 - maxLine.x1) * (maxLine.x2 - maxLine.x1) );
-				double x4 = p1.x - k * (maxLine.y2 - maxLine.y1);
-				double y4 = p1.y + k * (maxLine.x2 - maxLine.x1);
-				Point start1 = new Point(x4, y4);
+				Point minStart = minLine.getStartingPoint();
+				double k = ((maxLine.y2 - maxLine.y1) * (minStart.x - maxLine.x1) - (maxLine.x2 - maxLine.x1) * (minStart.y - maxLine.y1)) / ((maxLine.y2 - maxLine.y1) * (maxLine.y2 - maxLine.y1) + (maxLine.x2 - maxLine.x1) * (maxLine.x2 - maxLine.x1) );
+				double x4 = minStart.x - k * (maxLine.y2 - maxLine.y1);
+				double y4 = minStart.y + k * (maxLine.x2 - maxLine.x1);
+				Point minStartProj = new Point(x4, y4);
 				
-				Point p2 = minLine.getEndingPoint();
-				k = ((maxLine.y2 - maxLine.y1) * (p2.x - maxLine.x1) - (maxLine.x2 - maxLine.x1) * (p2.y - maxLine.y1)) / ((maxLine.y2 - maxLine.y1) * (maxLine.y2 - maxLine.y1) + (maxLine.x2 - maxLine.x1) * (maxLine.x2 - maxLine.x1) );
-				x4 = p2.x - k * (maxLine.y2 - maxLine.y1);
-				y4 = p2.y + k * (maxLine.x2 - maxLine.x1);
-				Point end1 = new Point(x4, y4);
+				Point minEnd = minLine.getEndingPoint();
+				k = ((maxLine.y2 - maxLine.y1) * (minEnd.x - maxLine.x1) - (maxLine.x2 - maxLine.x1) * (minEnd.y - maxLine.y1)) / ((maxLine.y2 - maxLine.y1) * (maxLine.y2 - maxLine.y1) + (maxLine.x2 - maxLine.x1) * (maxLine.x2 - maxLine.x1) );
+				x4 = minEnd.x - k * (maxLine.y2 - maxLine.y1);
+				y4 = minEnd.y + k * (maxLine.x2 - maxLine.x1);
+				Point minEndProj = new Point(x4, y4);
 				
 
 				
@@ -297,32 +628,48 @@ public class LineProcessor {
 				Equation fleq = l1.getEquation();
 				Equation sleq = l2.getEquation();
 				
-				double distance = length1 < length2 ? Line.getDistanceToLine(l1Mid, sleq) : Line.getDistanceToLine(l2Mid, fleq);
+				double distance = length1 <= length2 ? Line.getDistanceToLine(l1Mid, sleq) : Line.getDistanceToLine(l2Mid, fleq);
 				
 				//iei cea mai mica din drepte.
 				
 				//first unite the heads
-				// 15 - 25
-				// 6 - 50
 				if(l1.isNotPerpendicular(l2) && distance >= WALL_MIN_WIDTH && distance <= WALL_MAX_WIDTH ){
 					
 //					if((Math.abs(minStart.x - minEnd.x) <= limitSoTheyAreTheSame) || Math.abs(minStart.y - minEnd.y) <= limitSoTheyAreTheSame){
 					
 						//add the points with the biggest distance (they are parallel, and we unite the points with the biggest distance)
-						Point midStart = new Point((start1.x + p1.x) / 2.0, (start1.y + p1.y) / 2.0);
-						Point midEnd   = new Point((end1.x + p2.x) / 2.0, (end1.y + p2.y) / 2.0 );
+						Point midStart = null; //new Point((start1.x + p1.x) / 2.0, (start1.y + p1.y) / 2.0);
+						Point midEnd   = null; //new Point((end1.x + p2.x) / 2.0, (end1.y + p2.y) / 2.0 );
 						
 						midStart = minLine.getStartingPoint();
 						midEnd = minLine.getEndingPoint();
 //						
 						outLine = new Line(midStart, midEnd);
+						
+						//draw lines to unite
+//						Imgproc.line(toDraw, l1.getStartingPoint(), l1.getEndingPoint(), new Scalar(0, 255, 0), 3);
+//						Imgproc.line(toDraw, l2.getStartingPoint(), l2.getEndingPoint(), new Scalar(0, 255, 0), 3);
+//						drawID++;
+//						Imgcodecs.imwrite("lines/" + drawID + ". lineDetection - first2.png", toDraw);
+//						
+//						//draw final
+//						Imgproc.line(toDraw, midStart, midEnd, new Scalar(0, 0, 255), 5);
+//						drawID++;
+//						Imgcodecs.imwrite("lines/" + drawID + ". lineDetection - FINAL.png", toDraw);
 						output.add(outLine);
 						
 						System.out.println(l1.toString() + " + " + l2.toString() + " = " + outLine.toString());
 						
-						found = true;
-						theLines.remove(y);
-						y--;
+						if(length1 <= length2){
+							theLines.remove(x);
+							x--;
+							removed = true;
+							break;
+						}
+						else{
+							theLines.remove(y);
+							y--;
+						}
 						
 //					}
 					
@@ -330,173 +677,16 @@ public class LineProcessor {
 				
 			}
 			
-			if(found){
-
+			if(!removed){
 				theLines.remove(x);
 				x--;
 			}
+
 			
 		}
 		
 		return output;
 			
-	}
-	
- 	public List<Line> getLinesWithThisThickness2(List<Line> theLines, int thickness){
-		
-		
-		List<Line> finalLines = new ArrayList<>();
-		boolean found;
-		
-		for(int i = 0; i < theLines.size(); i++){
-			
-			Line l1 = theLines.get(i);
-			found = false;
-			
-			for (int j = i + 1; j < theLines.size(); j++) {
-				
-				Line l2 = theLines.get(j);
-				
-				// two variants - strt with the most thick ones, eliminate them and then continue (verif = >= thickness)
-				
-				if(Math.abs(l1.y1 - l1.y2) <= 100 && Math.abs(l2.y1 - l2.y2) <= 100 
-						//&& (Math.abs(l1.x1 - l2.x1) <= 100 && Math.abs(l1.x2 - l2.x2) <= 100)
-						){// they might have their corners slightly splitted, error rate ~= 10, but they are the same
-					//horizontal lines
-					
-					Double xx1 = (l1.x1 + l1.x2) / 2.0;
-					Double xy1 = l1.y1;
-					
-					Double xx2 = (l2.x1 + l2.x2) / 2.0;
-					Double xy2 = l2.y1;
-
-					double distance 	= getDistance(new Point(xx1, xy1), new Point(xx2, xy2));
-					
-					if( distance >= (thickness - 4) && distance <= (thickness + 4)){
-						//in the required limit, with an +-2 error rate
-
-						Double x1 = Math.min(l1.x1, l2.x1);
-						Double y1 = (l1.y1 + l2.y1) / 2.0;
-						Double x2 = Math.max(l1.x2, l2.x2);
-						Double y2 = (l1.y1 + l2.y1) / 2.0;
-						
-						Line line = new Line(x1, x2, y1, y2);
-						finalLines.add(line);
-						
-						theLines.remove(j);
-						j--;
-						found = true;
-						
-					}
-				}
-				else if(Math.abs(l1.x1 - l1.x2) <= 100 && Math.abs(l2.x1 - l2.x2) <= 100
-							//&& (Math.abs(l1.y1 - l2.y1) <= 100) && Math.abs(l1.y2 - l2.y2) <= 100 
-							){
-					//vertical lines
-					
-					Double xy1 = (l1.y1 + l1.y2) / 2.0;
-					Double xx1 = l1.x1;
-					
-					Double xy2 = (l2.y1 + l2.y2) / 2.0;
-					Double xx2 = l2.x1;
-
-					double distance 	= getDistance(new Point(xx1, xy1), new Point(xx2, xy2));
-					
-					if( distance >= (thickness - 4) && distance <= (thickness + 4)){
-							//in the required limit, with an +-2 error rate
-						Double x1 = (l1.x1 + l2.x1) / 2.0;
-						Double y1 = Math.min(l1.y1, l2.y1);
-						Double x2 = (l1.x1 + l2.x1) / 2.0;
-						Double y2 = Math.max(l1.y2, l2.y2);
-						
-						Line line = new Line(x1, x2, y1, y2);
-						finalLines.add(line);
-
-						theLines.remove(j);
-						j--;
-						found = true;
-					}
-					
-				}
-				
-			}
-			
-			if(found){
-
-				theLines.remove(i);
-				i--;
-			}
-			
-		}
-		
-		System.out.println("Big lines nr: " + finalLines.size());
-		
-		return finalLines;
-			
-	}
- 	
-	public List<Line> getDominantLengths(List<Line> theLines ){
-		
-
-		theLines.sort(new Line(1, 1, 1, 1));
-		
-		List<Line> output = new ArrayList<>();
-		
-		Map<Integer, Integer> sizes = new HashMap<Integer, Integer>();
-		
-		for(int x = 0; x < theLines.size(); x++){
-			
-			Line l1 = theLines.get(x);
-			l1.normalizeAfterXAxys();
-			
-			
-			for(int y = x + 1; y < theLines.size(); y++){
-				
-				Line l2 = theLines.get(y);
-				l2.normalizeAfterXAxys();
-				
-				if(l1.isParallelWith(l2)){
-
-					Point l1Mid		= new Point((l1.x1 + l1.x2) / 2.0, (l1.y1 + l1.y2) / 2.0);
-					Point l2Mid		= new Point((l2.x1 + l2.x2) / 2.0, (l2.y1 + l2.y2) / 2.0);
-					int midDistance	= (int)getDistance(l1Mid, l2Mid);
-					
-					if(midDistance < 50 && sizes.containsKey(midDistance)){
-						
-						Integer oldNrOfApparitions = sizes.get(midDistance);
-						
-						sizes.put(midDistance, oldNrOfApparitions + 1); 
-					}
-					else
-						sizes.put(midDistance, 1);
-				}
-			}
-			
-		}
-
-	    List<Map.Entry<Integer, Integer>> entries = new ArrayList<Map.Entry<Integer, Integer>>();
-	    
-		for (Map.Entry<Integer, Integer> entry : sizes.entrySet()) {
-			entries.add(entry);
-		}
-
-	    
-	    Collections.sort(entries, new Comparator<Map.Entry<Integer, Integer>>() {
-	    	
-	        public int compare(Map.Entry<Integer, Integer> a,
-	                Map.Entry<Integer, Integer> b) {
-	        	
-	            return - a.getValue().compareTo(b.getValue());
-	        }
-	    });
-		
-	    for (int i = 0; i < 10; i++) {
-	    	
-			Map.Entry<Integer, Integer> entry = entries.get(i);
-	    	System.out.println(entry.getKey() + " --> " + entry.getValue());
-		}
-		
-		return output;
 	}
 	
 	
@@ -505,10 +695,10 @@ public class LineProcessor {
 	/**
 	 * Draw the specified lines on the specified image.
 	 */
-	public void drawLines(List<Line> lines, Mat imageToDrawTo, Scalar color, Integer thickness, boolean drawAll, boolean drawFinal, ImageProcessorImpl processor){
+	public static void drawLines(List<Line> lines, Mat imageToDrawTo, Scalar color, Integer thickness, boolean drawAll, boolean drawFinal, ImageProcessorImpl processor){
 		
 		//go through the matrix columns
-		System.out.println("Number of lines detected: " + lines.size());
+//		System.out.println("Number of lines detected: " + lines.size());
 		
 		for(int x = 0; x < lines.size(); x++){
 			

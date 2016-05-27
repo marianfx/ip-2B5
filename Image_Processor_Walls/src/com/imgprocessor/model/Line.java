@@ -4,10 +4,16 @@ import java.util.Comparator;
 
 import org.opencv.core.Point;
 
+
+
 public class Line implements Comparator<Line> {
 
+	public enum line_type {WALL, DOOR, WINDOW};
+	
 	public double x1, y1;
 	public double x2, y2;
+	public line_type type;
+	public boolean marked = false;
 	
 	public class Equation{
 		
@@ -41,6 +47,10 @@ public class Line implements Comparator<Line> {
 		this.y2 = p2.y;
 	}
 	
+	public Line(Line toCopy){
+		this(toCopy.getStartingPoint(), toCopy.getEndingPoint());
+	}
+	
 	public Line(){
 		
 		this.x1 = 0;
@@ -56,10 +66,23 @@ public class Line implements Comparator<Line> {
 		return new Point(this.x1, this.y1);
 	}
 	
+	public void setStartingPoint(Point p){
+		
+		this.x1 = p.x;
+		this.y1 = p.y;
+	}
+	
 	public Point getEndingPoint(){
 		
 		return new Point(this.x2, this.y2);
 	}
+
+	public void setEndingPoint(Point p){
+		
+		this.x2 = p.x;
+		this.y2 = p.y;
+	}
+	
 	
 	public Equation getEquation(){
 		
@@ -123,6 +146,24 @@ public class Line implements Comparator<Line> {
 	}
 	
 	
+	public boolean isPerpendicularWith(Line l2){
+		
+		if(this.equals(l2)) return false;
+		
+		if(this.isParallelWith(l2)) return false;
+		
+		double panta1 = (this.y2 - this.y1)/(this.x2 - this.x1);
+		double panta2 = (l2.y2 - l2.y1)/(l2.x2 - l2.x1);
+		
+		if (panta1 * panta2 == -1){
+			
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
 	public boolean isNotPerpendicular(Line l2){
 		
 		if(this.equals(l2))
@@ -150,10 +191,10 @@ public class Line implements Comparator<Line> {
 	
 	public double getLength()
 	{
-		Point p1 = new Point(x1, y1);
-		Point p2 = new Point(x2, y2);
+		Point p1 = getStartingPoint();
+		Point p2 = getEndingPoint();
 		
-		return Math.sqrt((p2.x-p1.x)*(p2.x-p1.x) + (p2.y-p1.y)*(p2.y-p1.y));
+		return Math.sqrt((p2.x - p1.x)*(p2.x - p1.x) + (p2.y - p1.y)*(p2.y - p1.y));
 	}
 	
 	private double getDistance(Point p1, Point p2)

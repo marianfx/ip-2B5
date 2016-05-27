@@ -99,5 +99,15 @@ public class Representation {
 	public void setStairs(List <Stairs> stairs) {
 		this.stairs = stairs;
 	}
+	
+	public void clearWindows(){
+		windows.clear();
+		windows = new ArrayList<>();
+	}
+	
+	public void clearDoors(){
+		doors.clear();
+		doors = new ArrayList<>();
+	}
 
 }

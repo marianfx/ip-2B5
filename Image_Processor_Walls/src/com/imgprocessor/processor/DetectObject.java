@@ -40,7 +40,7 @@ import com.imgprocessor.opencvtest.LineProcessor;
 
 public class DetectObject
 {
-	class PointsWrapper{
+	public class PointsWrapper{
 
 		public Point point1, point2, point3, point4;
 
@@ -169,29 +169,29 @@ public class DetectObject
 
 			List<Line> lines=new  ArrayList<Line>();
 
-			Line l1=new Line(new Point(scene_corners.get(0, 0)), new Point(scene_corners.get(1, 0)));
-			Line l2=new Line(new Point(scene_corners.get(1, 0)), new Point(scene_corners.get(2, 0)));
-			Line l3=new Line(new Point(scene_corners.get(2, 0)), new Point(scene_corners.get(3, 0)));
-			Line l4=new Line(new Point(scene_corners.get(3, 0)), new Point(scene_corners.get(0, 0)));
+			Line l1 = new Line(new Point(scene_corners.get(0, 0)), new Point(scene_corners.get(1, 0)));
+			Line l2 = new Line(new Point(scene_corners.get(1, 0)), new Point(scene_corners.get(2, 0)));
+			Line l3 = new Line(new Point(scene_corners.get(2, 0)), new Point(scene_corners.get(3, 0)));
+			Line l4 = new Line(new Point(scene_corners.get(3, 0)), new Point(scene_corners.get(0, 0)));
 			lines.add(l1);
 			lines.add(l2);
 			lines.add(l3);
 			lines.add(l4);
 
-			int error=20;
-			LineProcessor lineProc= new LineProcessor(lines); 
-			List <Line> rightLines= lineProc.makeLinesRight(lines,error);
+			int error = 20;
+			LineProcessor lineProc = new LineProcessor(lines); 
+			List <Line> rightLines = lineProc.makeLinesRight(lines, error);
 
-			System.out.println(rightLines.get(0).toString());
-				Imgproc.line(img, rightLines.get(0).getStartingPoint(),rightLines.get(0).getEndingPoint(), new Scalar(255, 0, 0 ), 4);
+//			System.out.println(rightLines.get(0).toString());
+//				Imgproc.line(img, rightLines.get(0).getStartingPoint(),rightLines.get(0).getEndingPoint(), new Scalar(255, 0, 0 ), 4);
 //				Imgproc.line(img, rightLines.get(1).getStartingPoint(), rightLines.get(1).getEndingPoint(), new Scalar(0, 255, 0), 4);
 //				Imgproc.line(img, rightLines.get(2).getStartingPoint(), rightLines.get(2).getEndingPoint(), new Scalar(0, 0, 255), 4);
 //				Imgproc.line(img, rightLines.get(3).getStartingPoint(), rightLines.get(3).getEndingPoint(), new Scalar(0, 255, 255), 4);
 
-			point1=rightLines.get(0).getStartingPoint();
-			point2=rightLines.get(0).getEndingPoint();
-			point3=rightLines.get(2).getStartingPoint(); 
-			point4=rightLines.get(2).getEndingPoint();
+			point1 = rightLines.get(0).getStartingPoint();
+			point2 = rightLines.get(0).getEndingPoint();
+			point3 = rightLines.get(2).getStartingPoint(); 
+			point4 = rightLines.get(2).getEndingPoint();
 			
 			
 
@@ -201,7 +201,7 @@ public class DetectObject
 //			point3 = new Point(scene_corners.get(2, 0));
 //			point4 = new Point(scene_corners.get(3, 0));
 
-			MatOfPoint matPoints=new MatOfPoint(point1,point2,point3,point4);
+			MatOfPoint matPoints = new MatOfPoint(point1,point2,point3,point4);
 
 
 			Imgproc.fillConvexPoly(img, matPoints, new Scalar(255,255,255));
@@ -214,6 +214,7 @@ public class DetectObject
 
 			Highgui.imwrite("_output//outputImage.jpg", outputImage);
 			Highgui.imwrite("_output//matchoutput.jpg", matchoutput);
+			
 			return img;
 		}
 		else
@@ -238,27 +239,27 @@ public class DetectObject
 		while(aux2 != null)
 		{	
 			nrObjects++;
-			processor.appendDetail("Found one " + objName + ".");
+			processor.appendDetail("Found one " + objName + ": (" + (int)point1.x + ", " + (int)point1.y + ") -> (" + (int)point2.x + ", " + (int)point2.y + ")");
 			output.add(new PointsWrapper(point1, point2, point3, point4));
 			
 			if(point1.y==point2.y){
 				if(point1.x<point2.x){
-					point1.y+=8;
-					point2.y+=8;	
+					point1.y += 8;
+					point2.y += 8;	
 				}else{
-					point1.y-=8;
-					point2.y-=8;
+					point1.y -= 8;
+					point2.y -= 8;
 				}
 				//Imgproc.line(aux2, point1,point2, new Scalar(0, 255, 0 ), 5);
 			}
 			
 			if(point1.x==point2.x){
 				if(point1.y<point2.y){
-					point1.x-=10;
-					point2.x-=10;
+					point1.x -= 10;
+					point2.x -= 10;
 				}else{
-					point1.x+=10;
-					point2.x+=10;
+					point1.x += 10;
+					point2.x += 10;
 				}
 				//Imgproc.line(aux2, point1,point2, new Scalar(255, 0, 0 ), 5);
 			}

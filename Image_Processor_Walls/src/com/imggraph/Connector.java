@@ -15,6 +15,8 @@ public class Connector {
 	List<ConnectHelper> c = new ArrayList<ConnectHelper>();
 	List<Door> door = new ArrayList<Door>();
 	static List<GraphEdge> gEdge = new ArrayList<GraphEdge>();
+	
+	
 	public Connector(List<Room> rooms){
 		this.rooms = rooms;
 	}
@@ -43,7 +45,9 @@ public class Connector {
 		System.out.println("\nCamere in total:  " + c.size() + "\n" );
 		System.out.println(rooms.size());
 		List<Room> adjacentRooms = new ArrayList<Room>();
+		
 		for(int i=0;i<rooms.size();i++){//Luam fiecare camera
+			
 			System.out.print("Camerele adiacente cu camera " + String.valueOf(i+1) + ":") ;
 			
 			for(int j=0;j<rooms.get(i).getParts().size();j++){
